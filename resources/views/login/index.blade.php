@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-lg navbar-light rounded-0 bg-white fixed-top rounded-0 shadow-none border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="assets/images/logo-img.png" alt="" />
+                    <img src="{{asset('assets/images/logo-img.png')}}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
                 </button>

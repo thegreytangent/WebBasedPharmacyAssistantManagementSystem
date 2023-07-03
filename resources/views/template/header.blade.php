@@ -6,11 +6,8 @@
 
 
             <div class="top-menu ms-auto">
-                <ul class="navbar-nav align-items-center gap-1">
-
-
-
-
+                <ul class="navbar-nav align-items-center gap-1" style="margin-right:479px">
+                    <img src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon" />
 
                 </ul>
             </div>
