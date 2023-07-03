@@ -43,8 +43,15 @@
             </a>
         </li>
         <li>
+            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+                <div class="parent-icon"><i class="bx bxs-user-account"></i>
+                </div>
+                <div class="menu-title">User Management</div>
+            </a>
+        </li>
+        <li>
             <a href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-home-alt"></i>
+                <div class="parent-icon"><i class="bx bx-printer"></i>
                 </div>
                 <div class="menu-title">Reports</div>
             </a>
