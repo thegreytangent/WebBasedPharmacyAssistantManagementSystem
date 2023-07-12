@@ -13,7 +13,7 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+            <a href="/dashboard" >
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -21,7 +21,7 @@
         </li>
 
         <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+            <a href="/supplier" >
                 <div class="parent-icon"><i class="bx bxs-truck"></i>
                 </div>
                 <div class="menu-title">Suppliers</div>
@@ -29,21 +29,29 @@
         </li>
 
         <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+            <a href="#" >
+                <div class="parent-icon"><i class="bx bxs-category"></i>
+                </div>
+                <div class="menu-title">Categories</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" >
                 <div class="parent-icon"><i class="bx bx-plus-medical"></i>
                 </div>
                 <div class="menu-title">Medicines</div>
             </a>
         </li>
         <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+            <a href="#" >
                 <div class="parent-icon"><i class="bx bxs-user-plus"></i>
                 </div>
                 <div class="menu-title">Customers</div>
             </a>
         </li>
         <li>
-            <a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
+            <a href="#" >
                 <div class="parent-icon"><i class="bx bxs-user-account"></i>
                 </div>
                 <div class="menu-title">User Management</div>
