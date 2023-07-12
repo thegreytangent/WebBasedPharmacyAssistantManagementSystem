@@ -20,4 +20,8 @@
         public function index() {
             return view('supplier.index');
         }
+
+        public function create() {
+            return view('supplier.create');
+        }
     }

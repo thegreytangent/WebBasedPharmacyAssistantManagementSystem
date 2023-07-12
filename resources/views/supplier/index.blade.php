@@ -7,8 +7,10 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">Suppliers Information</h6>
                 <hr/>
+                <a href="/supplier/create" class="btn btn-success btn-sm ms-auto mb-3">Add New Supplier</a>
                 <div class="card">
                     <div class="card-body">
+
                         <table class="table mb-0 table-hover">
                             <thead>
                             <tr>
