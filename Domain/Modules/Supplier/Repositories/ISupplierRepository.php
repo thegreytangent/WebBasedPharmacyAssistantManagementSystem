@@ -3,6 +3,7 @@
 	namespace Domain\Modules\Supplier\Repositories;
 
 	use Domain\Modules\Supplier\Entities\Supplier;
+    use Illuminate\Pagination\Paginator;
 
     interface ISupplierRepository
 	{
@@ -12,5 +13,5 @@
 
         public function Delete(string $supplier_id) : void;
 
-        public function GetAllPaginate(int $page, int $limit) : array;
+        public function GetAllPaginate(int $page, int $limit) ;
 	}

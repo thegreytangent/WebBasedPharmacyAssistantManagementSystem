@@ -9,7 +9,7 @@
     <!--end breadcrumb-->
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-5">
             <div class="card">
                 <div class="card-body p-4">
                     <h5 class="card-title">Add New Supplier</h5>
@@ -18,24 +18,27 @@
                         <div class="row">
 
                             <div class="col-lg-12">
+                                @include('template.alert')
+                                {!!  Form::open(['url' => 'supplier', 'method' => 'POST']) !!}
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
 
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Supplier Name:</label>
-                                            <input type="text" class="form-control" id="inputProductTags" placeholder="Enter Supplier Name">
+                                            {!! Form::text('name',null, ['class' => 'form-control', 'placeholder' => 'Enter Supplier Name']); !!}
                                         </div>
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Contact Number:</label>
-                                            <input type="text" class="form-control" id="inputProductTags" placeholder="Enter Contact Number">
+                                            {!! Form::text('contact_number',null, ['class' => 'form-control', 'placeholder' => 'Enter Contact Number']); !!}
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="button" class="btn btn-primary">Save</button>
+                                                {!! Form::submit('Save', ['class' => 'btn btn-primary']); !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {!! Form::close() !!}
                             </div>
                         </div><!--end row-->
                     </div>
