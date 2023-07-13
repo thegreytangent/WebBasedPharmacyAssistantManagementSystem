@@ -24,9 +24,9 @@
 
         public function index(): View
         {
-            $data = $this->supplierRepository->GetAllPaginate(1, 5);
+            $data      = $this->supplierRepository->GetAllPaginate(1, 5);
             $suppliers = collect($data->items())->map(function ($d) {
-                $d =  new Supplier($d->name, new ContactNumber($d->contact_number), $d->id);
+                $d = new Supplier($d->name, new ContactNumber($d->contact_number), $d->id);
                 return (object)[
                     'id'             => $d->getId(),
                     'name'           => $d->getName(),
@@ -34,10 +34,58 @@
                 ];
             });
             return view('supplier.index')->with([
-                'suppliers' => $suppliers,
-                'pagination'     => $data->links()
+                'suppliers'  => $suppliers,
+                'pagination' => $data->links()
             ]);
         }
+
+        public function show($id)
+        {
+
+            $supplier = $this->supplierRepository->Find($id);
+
+            if (!$supplier) {
+                return redirectWithAlert('/supplier', [
+                    'alert-danger' => 'Supplier not found!'
+                ]);
+            }
+
+            $supplier = (object)[
+                'id'             => $supplier->getId(),
+                'name'           => $supplier->getName(),
+                'contact_number' => $supplier->getContactNumber()->getOriginalInput()
+            ];
+
+
+            return view('supplier.edit', [
+                'supplier' => $supplier
+            ]);
+        }
+
+        public function update(Request $request, $id) {
+            $val = Validator::make($request->all(), [
+                'name'           => 'required',
+                'contact_number' => 'required|numeric'
+            ]);
+
+            if ($val->fails()) {
+                return redirectWithErrors($val);
+            }
+
+
+            $supplier = new Supplier(
+                $request->input('name'),
+                new ContactNumber($request->input('contact_number')),
+                $id
+            );
+
+            $this->supplierRepository->Update($supplier);
+
+            return redirectWithAlert('/supplier', [
+                'alert-info' => 'Supplier has been updated'
+            ]);
+        }
+
 
         public function create(): View
         {

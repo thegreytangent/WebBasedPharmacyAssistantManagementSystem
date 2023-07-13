@@ -23,7 +23,10 @@
 
         public function Update(Supplier $supplier): void
         {
-            // TODO: Implement Update() method.
+            SupplierDB::find($supplier->getId())->update([
+                'name'           => $supplier->getName(),
+                'contact_number' => $supplier->getContactNumber()->getOriginalInput(),
+            ]);
         }
 
         public function Delete(string $supplier_id): void
@@ -34,5 +37,11 @@
         public function GetAllPaginate(int $page, int $limit)
         {
             return SupplierDB::paginate($limit);
+        }
+
+        public function Find(string $id): Supplier|null
+        {
+            $d = DB::table('suppliers')->find($id);
+            return !$d ? null : new Supplier($d->name, new ContactNumber($d->contact_number), $d->id);
         }
     }
