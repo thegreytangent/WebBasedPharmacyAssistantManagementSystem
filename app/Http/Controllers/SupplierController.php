@@ -8,6 +8,7 @@
     use Illuminate\Contracts\View\View;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
 
     class SupplierController extends Controller
@@ -62,7 +63,8 @@
             ]);
         }
 
-        public function update(Request $request, $id) {
+        public function update(Request $request, $id)
+        {
             $val = Validator::make($request->all(), [
                 'name'           => 'required',
                 'contact_number' => 'required|numeric'
@@ -116,6 +118,20 @@
                 'alert-success' => 'New Vehicle has been added!'
             ]);
 
+        }
+
+
+        public function destroy($id)
+        {
+
+
+            $this->supplierRepository->Delete($id);
+
+            Session::flash('alert-danger', 'Supplier has been deleted successfully.');
+
+            return response()->json([
+                'success' => true
+            ]);
         }
 
 

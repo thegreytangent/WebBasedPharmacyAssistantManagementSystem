@@ -46,21 +46,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-{{--                <nav class="d-flex justify-items-center justify-content-between">--}}
-{{--                    <div class="d-flex justify-content-between flex-fill d-sm-none">--}}
-{{--                        <ul class="pagination">--}}
-{{--                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
-{{--                            <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--                            <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
-{{--                            <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--                            <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </nav>--}}
-
             </div>
         </div>
 
@@ -78,7 +63,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `course/${id}`,
+                        url: `supplier/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

@@ -31,7 +31,7 @@
 
         public function Delete(string $supplier_id): void
         {
-            // TODO: Implement Delete() method.
+           DB::table('suppliers')->delete($supplier_id);
         }
 
         public function GetAllPaginate(int $page, int $limit)
