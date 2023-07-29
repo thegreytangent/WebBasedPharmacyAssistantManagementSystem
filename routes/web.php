@@ -19,6 +19,7 @@
 
 
     Route::get('/', 'LoginController@index');
+    Route::get('/login', 'LoginController@index');
     Route::post('/login', 'LoginController@login');
     Route::get('/dashboard', 'DashboardController@index');
     Route::resource('/supplier', 'SupplierController');
