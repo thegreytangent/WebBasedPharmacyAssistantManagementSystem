@@ -63,14 +63,7 @@
                 </div>
                 <div class="menu-title">Reports</div>
             </a>
-            <ul class="mm-collapse mm-show" style="">
-                <li> <a href="index.html"><i class="bx bx-radio-circle"></i>Default</a>
-                </li>
-                <li> <a href="index2.html"><i class="bx bx-radio-circle"></i>Alternate</a>
-                </li>
-                <li> <a href="index3.html"><i class="bx bx-radio-circle"></i>Graphical</a>
-                </li>
-            </ul>
+
         </li>
 
     </ul>
