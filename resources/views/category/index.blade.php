@@ -28,14 +28,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $supplier)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td>{{$supplier->name}}</td>
-                                        <td>{{$supplier->contact_number}}</td>
+                                        <td>{{$category->category_name}}</td>
+
                                         <td>
                                             <div class="d-flex order-actions">
-                                                <a href="/supplier/{{$supplier->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
-                                                <a href="#" id="{{$supplier->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
+                                                <a href="/category/{{$category->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                                <a href="#" id="{{$category->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
                                             </div> </td>
                                     </tr>
                                 @endforeach
@@ -46,7 +46,7 @@
 
                             </table>
                             <div class="row mt-3">
-                                {{--                            {!! $pagination !!}--}}
+                                {!! $pagination !!}
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `cateory/${id}`,
+                        url: `category/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
