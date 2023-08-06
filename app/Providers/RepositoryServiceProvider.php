@@ -18,6 +18,11 @@
                 'App\Repositories\SupplierRepository'
             );
 
+            $this->app->bind(
+                'Domain\Modules\Category\Repositories\ICategoryRepository',
+                'App\Repositories\CategoryRepository'
+            );
+
 
 
         }

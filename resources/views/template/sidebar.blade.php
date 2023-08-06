@@ -29,7 +29,7 @@
         </li>
 
         <li>
-            <a href="#" >
+            <a href="/category">
                 <div class="parent-icon"><i class="bx bxs-category"></i>
                 </div>
                 <div class="menu-title">Categories</div>
