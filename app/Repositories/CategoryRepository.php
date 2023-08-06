@@ -27,7 +27,7 @@
 
         public function Delete(string $id): void
         {
-            // TODO: Implement Delete() method.
+           CategoryDB::destroy($id);
         }
 
         public function GetAllPaginate(int $page, int $limit)

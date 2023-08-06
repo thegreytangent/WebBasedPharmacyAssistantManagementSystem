@@ -4,8 +4,10 @@
 
     use Domain\Modules\Category\Entities\Category;
     use Domain\Modules\Category\Repositories\ICategoryRepository;
+    use Illuminate\Http\JsonResponse;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\View\View;
 
@@ -41,7 +43,7 @@
         }
 
 
-        public function create()
+        public function create(): View
         {
             return view('category.create');
         }
@@ -106,6 +108,17 @@
             ]);
 
 
+        }
+
+        public function destroy($id) : JsonResponse
+        {
+            $this->categoryRepository->Delete($id);
+
+            Session::flash('alert-danger', 'Category has been deleted successfully.');
+
+            return response()->json([
+                'success' => true
+            ]);
         }
 
 
