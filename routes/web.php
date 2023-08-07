@@ -24,3 +24,4 @@
     Route::get('/dashboard', 'DashboardController@index');
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/category', 'CategoryController');
+    Route::resource('/medicine', 'MedicineController');

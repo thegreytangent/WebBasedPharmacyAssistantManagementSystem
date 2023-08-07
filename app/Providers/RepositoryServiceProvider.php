@@ -23,6 +23,11 @@
                 'App\Repositories\CategoryRepository'
             );
 
+            $this->app->bind(
+                'Domain\Modules\Medicine\Repositories\IMedicineRepository',
+                'App\Repositories\MedicineRepository'
+            );
+
 
 
         }

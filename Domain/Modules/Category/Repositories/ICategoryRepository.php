@@ -17,4 +17,6 @@
 
         public function Find(string $id) : Category | null;
 
+        public function All(): array;
+
     }

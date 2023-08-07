@@ -26,6 +26,13 @@
         return Redirect::back()->withErrors($validator->getMessageBag()->all()[0]);
     }
 
+    function redirectWithInput(Validator $validator): RedirectResponse
+    {
+        return Redirect::back()->withInput()->withErrors($validator->getMessageBag()->all()[0]);
+    }
+
+
+
     function redirectWithAlert(string $loc, array $alert) : RedirectResponse {
         return Redirect::to($loc)->with($alert);
     }

@@ -44,4 +44,11 @@
             $d = DB::table('suppliers')->find($id);
             return !$d ? null : new Supplier($d->name, new ContactNumber($d->contact_number), $d->id);
         }
+
+        public function All(): array
+        {
+            return DB::table('suppliers')->get()->map(function($supplier) {
+               return new Supplier($supplier->name, new ContactNumber($supplier->contact_number), $supplier->id);
+           })->toArray();
+        }
     }

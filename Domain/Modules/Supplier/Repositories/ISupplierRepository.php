@@ -16,4 +16,6 @@
         public function GetAllPaginate(int $page, int $limit) ;
 
         public function Find(string $id) : Supplier | null;
+
+        public function All(): array;
 	}

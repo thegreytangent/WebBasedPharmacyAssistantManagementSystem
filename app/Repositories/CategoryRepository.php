@@ -41,4 +41,11 @@
             $d = DB::table('categories')->find($id);
             return !$d ? null : new Category($d->category_name, $d->id);
         }
+
+        public function All(): array
+        {
+            return DB::table('categories')->get()->map(function ($cat) {
+                return new Category($cat->category_name, $cat->id);
+            })->toArray();
+        }
     }

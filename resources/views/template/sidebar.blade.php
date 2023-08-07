@@ -37,7 +37,7 @@
         </li>
 
         <li>
-            <a href="#" >
+            <a href="/medicine" >
                 <div class="parent-icon"><i class="bx bx-plus-medical"></i>
                 </div>
                 <div class="menu-title">Medicines</div>
