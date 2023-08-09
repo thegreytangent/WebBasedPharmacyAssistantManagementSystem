@@ -2,15 +2,14 @@
 
     namespace Domain\Modules\Medicine\Entities;
 
-    use Domain\Modules\Medicine\ValueObjects\Quantity;
     use Domain\Shared\Entity;
+    use Domain\Shared\ValueObjects\Quantity;
 
     class Medicine extends Entity
     {
         protected string $name;
         protected float $price;
-
-        protected Quantity $quantity;
+        protected int $quantity;
 
         public function __construct(string $name, float $price,?string $id = null)
         {
@@ -19,15 +18,32 @@
             $this->price = $price;
         }
 
-        public function getQuantity(): Quantity
+        public function getQuantity(): int
         {
             return $this->quantity;
         }
 
-        public function setQuantity(Quantity $quantity): void
+        public function setQuantity(int $quantity): void
         {
             $this->quantity = $quantity;
         }
+
+        /**
+         * @return string
+         */
+        public function getName(): string
+        {
+            return $this->name;
+        }
+
+        /**
+         * @return float
+         */
+        public function getPrice(): float
+        {
+            return $this->price;
+        }
+
 
 
     }

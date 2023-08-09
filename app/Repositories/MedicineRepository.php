@@ -4,13 +4,29 @@
 
     use Domain\Modules\Medicine\Entities\Medicine;
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
+    use Illuminate\Support\Facades\DB;
 
     class MedicineRepository implements IMedicineRepository
     {
 
         public function Save(Medicine $medicine, string $category_id, string $supplier_id): void
         {
-            // TODO: Implement Save() method.
+            DB::table('medicines')->insert([
+                'id'            => $medicine->getId(),
+                'category_id'   => $category_id,
+                'supplier_id'   => $supplier_id,
+                'medicine_name' => $medicine->getName(),
+                'price'         => $medicine->getPrice(),
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]);
+
+            DB::table('inventories')->insert([
+                'id'          => uuid(),
+                'medicine_id' => $medicine->getId(),
+                'date'        => now(),
+                'qty'         => $medicine->getQuantity()
+            ]);
         }
 
         public function Update(Medicine $medicine, string $category_id, string $supplier_id): void

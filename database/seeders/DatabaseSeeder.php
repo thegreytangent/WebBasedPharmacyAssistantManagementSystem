@@ -19,5 +19,7 @@
                 'password' => Hash::make('admin'),
                 'role'     => 'admin'
             ]);
+            $this->call(CategorySeeder::class);
+            $this->call(SupplierSeeder::class);
         }
     }

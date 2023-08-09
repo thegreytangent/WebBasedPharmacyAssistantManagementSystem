@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('category_id')->index();
             $table->uuid('supplier_id')->index();
             $table->string('medicine_name');
+            $table->float('price');
             $table->timestamps();
 
 

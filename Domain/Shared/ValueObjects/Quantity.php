@@ -1,6 +1,6 @@
 <?php
 
-	namespace Domain\Modules\Medicine\ValueObjects;
+	namespace Domain\Shared\ValueObjects;
 
 	class Quantity
 	{
@@ -12,7 +12,7 @@
         }
 
 
-        public function getInitialQty() : int {
+        public function getQty() : int {
             return $this->qty;
         }
 

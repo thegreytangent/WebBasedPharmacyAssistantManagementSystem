@@ -8,6 +8,7 @@
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
     use Domain\Modules\Supplier\Entities\Supplier;
     use Domain\Modules\Supplier\Repositories\ISupplierRepository;
+    use Domain\Shared\ValueObjects\Quantity;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\View\View;
@@ -64,8 +65,8 @@
                 'supplier'      => 'required',
                 'category'      => 'required',
                 'medicine_name' => 'required',
-                'price'         => 'required',
-                'qty'           => 'required'
+                'price'         => 'required|numeric',
+                'qty'           => 'required|int'
             ]);
 
             if ($val->fails()) {

@@ -3,6 +3,7 @@
     use Illuminate\Http\JsonResponse;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Support\Facades\Redirect;
+    use Illuminate\Support\Str;
     use Illuminate\Validation\Validator;
 
     function validateErrorResponse(Validator $validator): JsonResponse
@@ -32,8 +33,13 @@
     }
 
 
-
-    function redirectWithAlert(string $loc, array $alert) : RedirectResponse {
+    function redirectWithAlert(string $loc, array $alert): RedirectResponse
+    {
         return Redirect::to($loc)->with($alert);
+    }
+
+    function uuid(): string
+    {
+        return Str::uuid();
     }
 

@@ -22,11 +22,10 @@
                                 {!!  Form::open(['url' => 'medicine', 'method' => 'POST']) !!}
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
-
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Supplier:</label>
                                             {!! Form::select('supplier', $suppliers, null, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
-                                        </div>
+                                           </div>
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Category:</label>
                                             {!! Form::select('category', $categories, null, ['class' => 'form-control', 'placeholder' => '-- Select Category --']); !!}
