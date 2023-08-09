@@ -51,7 +51,7 @@
                 return [$cat->getId() => $cat->getCategoryName()];
             });
 
-          
+
             return view('medicine.create')->with([
                 'suppliers'  => $suppliers,
                 'categories' => $categories
