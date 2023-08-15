@@ -30,7 +30,12 @@
 
         public function index(): View
         {
+
+            $medicines = $this->medicineRepository->GetAllPaginate(1, 1);
+            dd($medicines);
+
             $medicines = [];
+
 
             return view('medicine.index')->with([
                 'medicines' => $medicines

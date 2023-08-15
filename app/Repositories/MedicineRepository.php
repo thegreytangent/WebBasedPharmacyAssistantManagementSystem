@@ -41,7 +41,7 @@
 
         public function GetAllPaginate(int $page, int $limit)
         {
-            // TODO: Implement GetAllPaginate() method.
+            return DB::table('medicines')->paginate();
         }
 
         public function Find(string $id): Medicine|null
