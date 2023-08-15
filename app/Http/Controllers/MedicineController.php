@@ -86,6 +86,11 @@
                 $req->input('supplier')
             );
 
+            return redirectWithAlert('/medicine', [
+                'alert-success' => 'New medicine has been added!'
+            ]);
+
+
 
         }
     }
