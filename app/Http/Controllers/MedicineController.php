@@ -10,6 +10,7 @@
     use Domain\Modules\Supplier\Entities\Supplier;
     use Domain\Modules\Supplier\Repositories\ISupplierRepository;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\View\View;
 
@@ -54,6 +55,66 @@
             ]);
         }
 
+        public function update(Request $req, $id) {
+            $val = Validator::make($req->all(), [
+                'supplier'      => 'required',
+                'category'      => 'required',
+                'medicine_name' => 'required',
+                'price'         => 'required|numeric',
+                'qty'           => 'required|int'
+            ]);
+
+            if ($val->fails()) {
+                return redirectWithInput($val);
+            }
+
+            $medicine = new Medicine(
+                $req->input('medicine_name'),
+                new Price($req->input('price')),
+                $id
+            );
+
+            $medicine->setQuantity($req->input('qty'));
+
+            $this->medicineRepository->Update(
+                $medicine,
+                $req->input('category'),
+                $req->input('supplier')
+            );
+
+            return redirectWithAlert('/medicine', [
+                'alert-success' => 'New medicine has been added!'
+            ]);
+        }
+
+
+        public function show($id)
+        {
+
+            $suppliers = collect($this->supplierRepository->All())->mapWithKeys(function ($sup) {
+                /** @var Supplier $sup */
+                return [$sup->getId() => $sup->getName()];
+            });
+
+
+            $categories = collect($this->categoryRepository->All())->mapWithKeys(function ($cat) {
+                /** @var Category $cat */
+                return [$cat->getId() => $cat->getCategoryName()];
+            });
+
+            $medicine = $this->medicineRepository->Find($id);
+
+
+            return view('medicine.edit')->with([
+                'medicine'    => $medicine,
+                'supplier_id' => $medicine->Supplier->id,
+                'category_id' => $medicine->Category->id,
+                'suppliers'   => $suppliers,
+                'categories'  => $categories
+            ]);
+
+        }
+
         public function create(): View
         {
 
@@ -91,7 +152,7 @@
 
             $medicine = new Medicine(
                 $req->input('medicine_name'),
-                $req->input('price')
+                new Price($req->input('price'))
             );
 
             $medicine->setQuantity($req->input('qty'));
@@ -107,5 +168,17 @@
             ]);
 
 
+        }
+
+
+        public function destroy($id) {
+
+            $this->medicineRepository->Delete($id);
+
+            Session::flash('alert-danger', 'Medicine has been deleted successfully.');
+
+            return response()->json([
+                'success' => true
+            ]);
         }
     }

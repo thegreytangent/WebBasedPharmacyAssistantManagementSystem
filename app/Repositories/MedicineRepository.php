@@ -2,11 +2,13 @@
 
     namespace App\Repositories;
 
+    use App\Models\Medicine as MedicineDB;
     use Domain\Modules\Medicine\Entities\Medicine;
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
     use Illuminate\Contracts\Pagination\Paginator;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Model;
     use Illuminate\Support\Facades\DB;
-    use  \App\Models\Medicine as MedicineDB;
 
     class MedicineRepository extends Repository implements IMedicineRepository
     {
@@ -18,7 +20,7 @@
                 'category_id'   => $category_id,
                 'supplier_id'   => $supplier_id,
                 'medicine_name' => $medicine->getName(),
-                'price'         => $medicine->getPrice(),
+                'price'         => $medicine->price()->getPrice(),
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ]);
@@ -33,23 +35,39 @@
 
         public function Update(Medicine $medicine, string $category_id, string $supplier_id): void
         {
-            // TODO: Implement Update() method.
+            DB::table('medicines')->where('id',$medicine->getId())->update([
+                'category_id'   => $category_id,
+                'supplier_id'   => $supplier_id,
+                'medicine_name' => $medicine->getName(),
+                'price'         => $medicine->price()->getPrice(),
+                'updated_at'    => now(),
+            ]);
+
         }
 
         public function Delete(string $medicine_id): void
         {
-            // TODO: Implement Delete() method.
+            MedicineDB::destroy($medicine_id);
         }
 
-        public function GetAllPaginate(int $page, int $limit) : Paginator
+        public function GetAllPaginate(int $page, int $limit): Paginator
         {
 
-            return MedicineDB::with(['Category', 'Supplier' ])->paginate(3);
+            return MedicineDB::with(['Category', 'Supplier'])->paginate(3);
 
         }
 
-        public function Find(string $id): Medicine|null
+        public function Find(string $id): Builder|Model
         {
-            return null;
+            return MedicineDB::with(['Category', 'Supplier'])->where([
+                'id' => $id
+            ])->first();
+        }
+
+        public function CountBalance($id): int
+        {
+          return DB::table('inventories')->where([
+              'medicine_id' => $id
+          ])->count();
         }
     }

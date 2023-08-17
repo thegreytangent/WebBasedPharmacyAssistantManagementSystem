@@ -4,6 +4,8 @@
 
 	use Domain\Modules\Medicine\Entities\Medicine;
     use Illuminate\Contracts\Pagination\Paginator;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Model;
 
     interface IMedicineRepository
 	{
@@ -15,5 +17,7 @@
 
         public function GetAllPaginate(int $page, int $limit) : Paginator ;
 
-        public function Find(string $id) : Medicine | null;
+        public function Find(string $id) : Builder|Model;
+
+        public function CountBalance($id) : int;
 	}

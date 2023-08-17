@@ -35,7 +35,7 @@
                                 <td>{{$medicine->price}}</td>
                                 <td>
                                     <div class="d-flex order-actions">
-                                        <a href="/supplier/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                        <a href="/medicine/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
                                         <a href="#" id="{{$medicine->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
                                     </div> </td>
                             </tr>
@@ -68,7 +68,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `supplier/${id}`,
+                        url: `medicine/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

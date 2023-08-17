@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                {!! Form::submit('Save', ['class' => 'btn btn-primary']); !!}
+                                                {!! Form::submit('Save', ['class' => 'btn btn-success']); !!}
                                             </div>
                                         </div>
                                     </div>
