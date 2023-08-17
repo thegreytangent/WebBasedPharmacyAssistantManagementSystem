@@ -4,9 +4,11 @@
 
     use Domain\Modules\Medicine\Entities\Medicine;
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
+    use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Support\Facades\DB;
+    use  \App\Models\Medicine as MedicineDB;
 
-    class MedicineRepository implements IMedicineRepository
+    class MedicineRepository extends Repository implements IMedicineRepository
     {
 
         public function Save(Medicine $medicine, string $category_id, string $supplier_id): void
@@ -39,13 +41,15 @@
             // TODO: Implement Delete() method.
         }
 
-        public function GetAllPaginate(int $page, int $limit)
+        public function GetAllPaginate(int $page, int $limit) : Paginator
         {
-            return DB::table('medicines')->paginate();
+
+            return MedicineDB::with(['Category', 'Supplier' ])->paginate(3);
+
         }
 
         public function Find(string $id): Medicine|null
         {
-            // TODO: Implement Find() method.
+            return null;
         }
     }

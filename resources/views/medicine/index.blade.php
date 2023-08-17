@@ -21,20 +21,24 @@
                                 <th scope="col">Supplier</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Medicine Name</th>
+                                <th scope="col">Price</th>
                                 <th scope="col"> Action</th>
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($medicines as $medicine)
-{{--                            <tr>--}}
-{{--                                <td>{{$supplier->name}}</td>--}}
-{{--                                <td>{{$supplier->contact_number}}</td>--}}
-{{--                                <td>--}}
-{{--                                    <div class="d-flex order-actions">--}}
-{{--                                        <a href="/supplier/{{$supplier->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>--}}
-{{--                                        <a href="#" id="{{$supplier->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>--}}
-{{--                                    </div> </td>--}}
-{{--                            </tr>--}}
+                            <tr>
+                                <td>{{$medicine->supplier_name}}</td>
+                                <td>{{$medicine->category_name}}</td>
+                                <td>{{$medicine->medicine_name}}</td>
+                                <td>{{$medicine->price}}</td>
+                                <td>
+                                    <div class="d-flex order-actions">
+                                        <a href="/supplier/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                        <a href="#" id="{{$medicine->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
+                                    </div> </td>
+                            </tr>
                             @endforeach
 
 
@@ -43,7 +47,7 @@
 
                         </table>
                         <div class="row mt-3">
-{{--                            {!! $pagination !!}--}}
+                            {!! $pagination !!}
                         </div>
                     </div>
                 </div>

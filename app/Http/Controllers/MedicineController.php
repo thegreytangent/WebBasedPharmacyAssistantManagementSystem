@@ -6,9 +6,9 @@
     use Domain\Modules\Category\Repositories\ICategoryRepository;
     use Domain\Modules\Medicine\Entities\Medicine;
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
+    use Domain\Modules\Medicine\ValueObjects\Price;
     use Domain\Modules\Supplier\Entities\Supplier;
     use Domain\Modules\Supplier\Repositories\ISupplierRepository;
-    use Domain\Shared\ValueObjects\Quantity;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\View\View;
@@ -31,28 +31,39 @@
         public function index(): View
         {
 
-            $medicines = $this->medicineRepository->GetAllPaginate(1, 1);
-            dd($medicines);
+            $medicine_pagination = $this->medicineRepository->GetAllPaginate(1, 5);
 
-            $medicines = [];
+
+            $medicines = collect($medicine_pagination->items())->map(function ($medicine) {
+                $med = new Medicine($medicine->medicine_name, new Price($medicine->price), $medicine->id);
+                $med->setCategoryName($medicine->Category->category_name);
+                $med->setSupplierName($medicine->Supplier->name);
+                return (object)[
+                    'id'            => $med->getId(),
+                    'medicine_name' => $med->getName(),
+                    'price'         => $med->price()->displayPrice(),
+                    'category_name' => $med->getCategoryName(),
+                    'supplier_name' => $med->getSupplierName()
+                ];
+            })->toArray();
 
 
             return view('medicine.index')->with([
-                'medicines' => $medicines
+                'medicines'  => $medicines,
+                'pagination' => $medicine_pagination->links()
             ]);
         }
 
         public function create(): View
         {
 
-            $suppliers  = collect($this->supplierRepository->All())->mapWithKeys(function ($sup){
+            $suppliers = collect($this->supplierRepository->All())->mapWithKeys(function ($sup) {
                 /** @var Supplier $sup */
                 return [$sup->getId() => $sup->getName()];
             });
 
 
-
-            $categories = collect($this->categoryRepository->All())->mapWithKeys(function ($cat){
+            $categories = collect($this->categoryRepository->All())->mapWithKeys(function ($cat) {
                 /** @var Category $cat */
                 return [$cat->getId() => $cat->getCategoryName()];
             });
@@ -94,7 +105,6 @@
             return redirectWithAlert('/medicine', [
                 'alert-success' => 'New medicine has been added!'
             ]);
-
 
 
         }

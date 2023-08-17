@@ -2,16 +2,20 @@
 
     namespace Domain\Modules\Medicine\Entities;
 
+    use Domain\Modules\Medicine\ValueObjects\Price;
     use Domain\Shared\Entity;
     use Domain\Shared\ValueObjects\Quantity;
 
     class Medicine extends Entity
     {
         protected string $name;
-        protected float $price;
+        protected Price $price;
         protected int $quantity;
+        protected string $category_name;
+        protected string $supplier_name;
 
-        public function __construct(string $name, float $price,?string $id = null)
+
+        public function __construct(string $name, Price $price,?string $id = null)
         {
             parent::__construct($id);
             $this->name = $name;
@@ -39,10 +43,38 @@
         /**
          * @return float
          */
-        public function getPrice(): float
+        public function price(): Price
         {
             return $this->price;
         }
+
+
+
+        public function getCategoryName(): string
+        {
+            return $this->category_name;
+        }
+
+        public function setCategoryName(string $category_name): void
+        {
+            $this->category_name = $category_name;
+        }
+
+
+        public function getSupplierName(): string
+        {
+            return $this->supplier_name;
+        }
+
+        public function setSupplierName(string $supplier_name): void
+        {
+            $this->supplier_name = $supplier_name;
+        }
+
+
+
+
+
 
 
 
