@@ -28,6 +28,12 @@
                 'App\Repositories\MedicineRepository'
             );
 
+            $this->app->bind(
+                'Domain\Modules\Customer\Repositories\ICustomerRepository',
+                'App\Repositories\CustomerRepository'
+            );
+
+
 
 
         }

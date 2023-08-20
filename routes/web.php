@@ -25,3 +25,4 @@
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/category', 'CategoryController');
     Route::resource('/medicine', 'MedicineController');
+    Route::resource('/customer', 'CustomerController');
