@@ -8,6 +8,7 @@
     use Exception;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Redirect;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
 
     class CustomerController extends Controller
@@ -23,13 +24,87 @@
 
         public function index()
         {
-            return view('customer.index');
+
+            $customer_data = $this->customerRepository->GetAllPaginate(1, 2);
+
+            $customers = collect($customer_data->items())->map(function ($c) {
+                $customer = new Customer($c->firstname, $c->lastname, new Birthdate($c->brithdate), $c->id);
+                return (object)[
+                    'id'        => $customer->getId(),
+                    'firstname' => $customer->getFirstname(),
+                    'lastname'  => $customer->getLastname(),
+                    'birthdate' => $customer->getBirthdate()->simpleFormat(),
+                ];
+            });
+
+
+            return view('customer.index')->with([
+                'customers' => $customers,
+                'pagination' => $customer_data->links()
+            ]);
         }
 
         public function create()
         {
             return view('customer.create');
         }
+
+        public function show($id) {
+            $customer = $this->customerRepository->Find($id);
+
+
+            return view('customer.edit')->with([
+                'customer' => (object) [
+                    'id'        => $id,
+                    'firstname' => $customer->getFirstname(),
+                    'lastname'  => $customer->getLastname(),
+                    'birthdate' => $customer->getBirthdate()->getValue(),
+                    'address' => $customer->getAddress()
+                ]
+            ]);
+
+        }
+
+        public function update(Request $req, $id)
+        {
+            try {
+
+                $validate = Validator::make($req->all(), [
+                    'firstname' => 'required',
+                    'lastname'  => 'required',
+                    'birthdate' => 'required'
+                ]);
+
+                if ($validate->fails())
+                    return Redirect::back()->with([
+                        'alert-success' => $validate->errors()->first()
+                    ])->withInput();
+
+
+                $customer = new Customer(
+                    $req->input('firstname'),
+                    $req->input('lastname'),
+                    new Birthdate($req->input('birthdate')),
+                $id);
+
+
+                $customer->setAddress($req->input('address'));
+
+                $this->customerRepository->Update($customer);
+
+                return redirectWithAlert('customer', [
+                    'alert-success' => 'New customers has been added'
+                ]);
+
+
+            } catch (Exception $e) {
+                return redirectWithAlert('customer', [
+                    'alert-danger' => $e->getMessage()
+                ]);
+            }
+
+        }
+
 
         public function store(Request $req)
         {
@@ -43,7 +118,7 @@
 
                 if ($validate->fails())
                     return Redirect::back()->with([
-                        'alert-danger' => $validate->errors()->first()
+                        'alert-success' => $validate->errors()->first()
                     ])->withInput();
 
 
@@ -57,6 +132,10 @@
 
                 $this->customerRepository->Save($customer);
 
+                return redirectWithAlert('customer', [
+                    'alert-success' => 'New customers has been added'
+                ]);
+
 
             } catch (Exception $e) {
                 return redirectWithAlert('customer', [
@@ -64,6 +143,16 @@
                 ]);
             }
 
+        }
+
+        public function destroy($id) {
+            $this->customerRepository->Delete($id);
+
+            Session::flash('alert-danger', 'Medicine has been deleted successfully.');
+
+            return response()->json([
+                'success' => true
+            ]);
         }
 
     }

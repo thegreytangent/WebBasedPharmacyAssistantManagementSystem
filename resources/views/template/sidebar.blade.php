@@ -44,7 +44,7 @@
             </a>
         </li>
         <li>
-            <a href="#" >
+            <a href="/customer" >
                 <div class="parent-icon"><i class="bx bxs-user-plus"></i>
                 </div>
                 <div class="menu-title">Customers</div>

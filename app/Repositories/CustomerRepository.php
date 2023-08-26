@@ -4,7 +4,11 @@
 
     use Domain\Modules\Customer\Entities\Customer;
     use Domain\Modules\Customer\Repositories\ICustomerRepository;
+    use Domain\Shared\ValueObjects\Birthdate;
+    use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Support\Facades\DB;
+    use App\Models\Customer as CustomerDB;
+
 
     class CustomerRepository implements ICustomerRepository
     {
@@ -24,11 +28,32 @@
 
         public function Update(Customer $customer): void
         {
-            // TODO: Implement Update() method.
+            DB::table('customers')->where('id', $customer->getId())->update([
+                'firstname'  => $customer->getFirstname(),
+                'lastname'   => $customer->getLastname(),
+                'birthdate'  => $customer->getBirthdate()->getValue(),
+                'address'    => $customer->getAddress(),
+                'updated_at' => now(),
+            ]);
         }
 
         public function Delete(string $id): void
         {
-            // TODO: Implement Delete() method.
+           DB::table('customers')->delete($id);
+        }
+
+        public function GetAllPaginate(int $page, int $count): Paginator
+        {
+            return CustomerDB::paginate($count);
+        }
+
+        public function Find(string $id): Customer|null
+        {
+          $c = DB::table('customers')->where(['id' => $id])->first();
+          if (!$c) return null;
+          $customer = new Customer($c->firstname,$c->lastname,new Birthdate($c->birthdate), $id);
+          $customer->setAddress($c->address);
+          return $customer;
+
         }
     }
