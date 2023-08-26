@@ -28,9 +28,24 @@
         public function index()
         {
 
+            $orders_data = $this->orderController->GetAllPaginate(request()->input('page') ?? 1, 3);
+            $orders      = collect($orders_data->items())->map(function ($o) {
+
+                return (object)[
+                    'id'            => $o->id,
+                    'name'          => $o->name,
+                    'supplier_id'   => $o->supplier_id,
+                    'medicine_id'   => $o->medicine_id,
+                    'medicine_name' => $o->Medicine->medicine_name,
+                    'supplier_name' => $o->Supplier->name,
+                    'qty'           => $o->total_qty
+                ];
+            });
+
+
             return view('order.index')->with([
-                'orders'     => [],
-                'pagination' => ""
+                'orders'     => $orders,
+                'pagination' => $orders_data->links()
             ]);
         }
 
@@ -52,15 +67,15 @@
             ]);
         }
 
-        public function store(Request $req) : RedirectResponse
+        public function store(Request $req): RedirectResponse
         {
 
             $val = Validator::make($req->all(), [
-                'order_number'  => 'required',
-                'date'          => 'required|date',
-                'medicine' => 'required',
-                'supplier'      => 'required',
-                'qty'           => 'required|int'
+                'order_number' => 'required',
+                'date'         => 'required|date',
+                'medicine'     => 'required',
+                'supplier'     => 'required',
+                'qty'          => 'required|int'
             ]);
 
             if ($val->fails()) {
@@ -74,7 +89,7 @@
             );
 
 
-            $this->orderController->Save($order,$req->input('supplier'), $req->input('medicine'));
+            $this->orderController->Save($order, $req->input('supplier'), $req->input('medicine'));
 
             return redirectWithAlert('/order', [
                 'alert-success' => 'New Order has been added!'

@@ -4,9 +4,11 @@
 
     use Domain\Modules\Order\Entities\Order;
     use Domain\Modules\Order\Repositories\IOrderRepository;
+    use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Support\Facades\DB;
+    use App\Models\Order as OrderDB;
 
-    class OrderRepository implements IOrderRepository
+    class OrderRepository extends Repository implements IOrderRepository
     {
 
         public function Save(Order $order, string $supplier_id, string $medicine_id): void
@@ -33,9 +35,13 @@
             // TODO: Implement Delete() method.
         }
 
-        public function GetAllPaginate(int $page, int $limit)
+        public function GetAllPaginate(int $page, int $limit): Paginator
         {
-            // TODO: Implement GetAllPaginate() method.
+           return OrderDB::with(['Supplier', 'Medicine'])
+                ->groupBy('supplier_id')
+                ->selectRaw('*,sum(qty) as total_qty')
+            ->paginate($limit);
+
         }
 
         public function Find(string $id): Order|null

@@ -15,29 +15,29 @@
 
                         @include('template.alert')
 
-                        <table class="table mb-0 table-hover">
+                        <table class="table mb-0 table-hover text-center">
                             <thead>
                             <tr>
-                                <th scope="col">Order Number</th>
-                                <th scope="col">Date</th>
+                                <th scope="col">Supplier Name</th>
                                 <th scope="col">Medicine</th>
-                                <th scope="col">Qty</th>
+                                <th scope="col">Over All Qty</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($orders as $medicine)
+                            @foreach($orders as $order)
                             <tr>
-                                <td>{{$medicine->supplier_name}}</td>
-                                <td>{{$medicine->category_name}}</td>
-                                <td>{{$medicine->medicine_name}}</td>
-                                <td>{{$medicine->price}}</td>
+                                <td>{{$order->supplier_name}}</td>
+                                <td>{{$order->medicine_name}}</td>
+
+                                <td>{{$order->qty}}</td>
+
                                 <td>
-                                    <div class="d-flex order-actions">
-                                        <a href="/medicine/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
-                                        <a href="#" id="{{$medicine->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
-                                    </div> </td>
+                                        <a href="#" class="btn btn-info btn-sm">
+                                            <i class="bx bxs-book-open"></i> View Records
+                                        </a>
+                                </td>
                             </tr>
                             @endforeach
 

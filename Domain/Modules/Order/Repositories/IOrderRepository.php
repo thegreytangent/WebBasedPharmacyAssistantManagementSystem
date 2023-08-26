@@ -3,6 +3,7 @@
 	namespace Domain\Modules\Order\Repositories;
 
 	use Domain\Modules\Order\Entities\Order;
+    use Illuminate\Contracts\Pagination\Paginator;
 
     interface IOrderRepository
 	{
@@ -12,7 +13,7 @@
 
         public function Delete(string $order_id) : void;
 
-        public function GetAllPaginate(int $page, int $limit) ;
+        public function GetAllPaginate(int $page, int $limit) : Paginator ;
 
         public function Find(string $id) : Order | null;
 

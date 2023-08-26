@@ -44,7 +44,7 @@
         }
 
         public function longDate() : string {
-            return Carbon::parse($this->date)->format('M, d Y');
+            return Carbon::parse($this->date)->format('F j, Y');
         }
 
         /**
