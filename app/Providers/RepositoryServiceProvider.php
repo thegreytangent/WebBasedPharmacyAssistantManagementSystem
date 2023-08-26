@@ -33,6 +33,11 @@
                 'App\Repositories\CustomerRepository'
             );
 
+            $this->app->bind(
+                'Domain\Modules\Order\Repositories\IOrderRepository',
+                'App\Repositories\OrderRepository'
+            );
+
 
 
 

@@ -8,6 +8,7 @@
     use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Support\Collection;
     use Illuminate\Support\Facades\DB;
 
     class MedicineRepository extends Repository implements IMedicineRepository
@@ -35,7 +36,7 @@
 
         public function Update(Medicine $medicine, string $category_id, string $supplier_id): void
         {
-            DB::table('medicines')->where('id',$medicine->getId())->update([
+            DB::table('medicines')->where('id', $medicine->getId())->update([
                 'category_id'   => $category_id,
                 'supplier_id'   => $supplier_id,
                 'medicine_name' => $medicine->getName(),
@@ -66,8 +67,13 @@
 
         public function CountBalance($id): int
         {
-          return DB::table('inventories')->where([
-              'medicine_id' => $id
-          ])->count();
+            return DB::table('inventories')->where([
+                'medicine_id' => $id
+            ])->count();
+        }
+
+        public function All(): array
+        {
+            return DB::table('medicines')->get()->toArray();
         }
     }

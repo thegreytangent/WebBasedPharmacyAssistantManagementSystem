@@ -26,3 +26,4 @@
     Route::resource('/category', 'CategoryController');
     Route::resource('/medicine', 'MedicineController');
     Route::resource('/customer', 'CustomerController');
+    Route::resource('/order', 'OrderController');
