@@ -27,3 +27,5 @@
     Route::resource('/medicine', 'MedicineController');
     Route::resource('/customer', 'CustomerController');
     Route::resource('/order', 'OrderController');
+    Route::resource('/purchase', 'PurchaseController');
+    Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');

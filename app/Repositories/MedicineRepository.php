@@ -74,6 +74,8 @@
 
         public function All(): array
         {
-            return DB::table('medicines')->get()->toArray();
+            $sql = "SELECT m.*, c.category_name as category_name FROM medicines m ";
+            $sql .= "LEFT JOIN categories c on m.category_id = c.id" ;
+            return $this->query($sql);
         }
     }
