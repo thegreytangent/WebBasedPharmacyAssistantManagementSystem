@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Address:</label>
-                                                {!! Form::textarea('contact_number',$customer->address, [
+                                                {!! Form::textarea('address',$customer->address, [
 	                                                    'class' => 'form-control',
 	                                                    'placeholder' => 'Enter Address',
 	                                                    'rows' => '4'

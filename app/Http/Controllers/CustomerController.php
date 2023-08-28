@@ -25,21 +25,23 @@
         public function index()
         {
 
-            $customer_data = $this->customerRepository->GetAllPaginate(1, 2);
+            $customer_data = $this->customerRepository->GetAllPaginate(1, 10);
 
             $customers = collect($customer_data->items())->map(function ($c) {
                 $customer = new Customer($c->firstname, $c->lastname, new Birthdate($c->brithdate), $c->id);
+                $customer->setAddress($c->address);
                 return (object)[
                     'id'        => $customer->getId(),
                     'firstname' => $customer->getFirstname(),
                     'lastname'  => $customer->getLastname(),
                     'birthdate' => $customer->getBirthdate()->simpleFormat(),
+                    'address'   => $customer->getAddress()
                 ];
             });
 
 
             return view('customer.index')->with([
-                'customers' => $customers,
+                'customers'  => $customers,
                 'pagination' => $customer_data->links()
             ]);
         }
@@ -49,17 +51,18 @@
             return view('customer.create');
         }
 
-        public function show($id) {
+        public function show($id)
+        {
             $customer = $this->customerRepository->Find($id);
 
 
             return view('customer.edit')->with([
-                'customer' => (object) [
+                'customer' => (object)[
                     'id'        => $id,
                     'firstname' => $customer->getFirstname(),
                     'lastname'  => $customer->getLastname(),
                     'birthdate' => $customer->getBirthdate()->getValue(),
-                    'address' => $customer->getAddress()
+                    'address'   => $customer->getAddress()
                 ]
             ]);
 
@@ -85,7 +88,7 @@
                     $req->input('firstname'),
                     $req->input('lastname'),
                     new Birthdate($req->input('birthdate')),
-                $id);
+                    $id);
 
 
                 $customer->setAddress($req->input('address'));
@@ -145,7 +148,8 @@
 
         }
 
-        public function destroy($id) {
+        public function destroy($id)
+        {
             $this->customerRepository->Delete($id);
 
             Session::flash('alert-danger', 'Medicine has been deleted successfully.');

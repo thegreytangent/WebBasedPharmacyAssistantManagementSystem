@@ -22,6 +22,7 @@
                                 <th scope="col">Lastname</th>
                                 <th scope="col">Birthdate</th>
                                 <th scope="col">Address</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -30,6 +31,7 @@
                                     <td>{{$customer->firstname}}</td>
                                     <td>{{$customer->lastname}}</td>
                                     <td>{{$customer->birthdate}}</td>
+                                    <td> {{$customer->address }}</td>
                                     <td>
                                         <div class="d-flex order-actions">
                                             <a href="/customer/{{$customer->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>

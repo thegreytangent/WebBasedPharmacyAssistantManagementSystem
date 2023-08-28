@@ -76,6 +76,7 @@
 
             $medicine->setQuantity($req->input('qty'));
 
+
             $this->medicineRepository->Update(
                 $medicine,
                 $req->input('category'),

@@ -53,7 +53,7 @@
         </li>
         <li class="menu-label">Operations</li>
         <li>
-            <a href="/orders">
+            <a href="/order">
                 <div class="parent-icon"><i class="bx bxs-user-plus"></i>
                 </div>
                 <div class="menu-title">Supplier Orders</div>
@@ -63,7 +63,7 @@
             <a href="/purchases">
                 <div class="parent-icon"><i class="bx bxs-user-plus"></i>
                 </div>
-                <div class="menu-title">Medicine Purchases</div>
+                <div class="menu-title">Customer Purchases</div>
             </a>
 
         </li>
