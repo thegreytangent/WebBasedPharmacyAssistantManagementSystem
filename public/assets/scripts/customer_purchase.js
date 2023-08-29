@@ -3,26 +3,18 @@ $(document).ready(function () {
     let medicine_table = null;
     let purchases = {};
 
-    // let purchases = {
-    //     date: null,
-    //     receipt_number: null,
-    //     customer_name: null,
-    //     amount: null,
-    //     cash: null,
-    //     change: null,
-    //     medicines: medicines,
-    // };
 
 
     $('.form-select').change(function () {
-        var id = $(this).val();
-        var name = $(this).find('option:selected').text();
-        var price = $(this).find('option:selected').attr("price");
+        let id =$(this).find('option:selected').val();
+        let name = $(this).find('option:selected').text();
+        let price = $(this).find('option:selected').attr("price");
 
         let data = {
             medicine_id: id,
             medicine_name: name,
-            price: price
+            price: price,
+            qty: 0
         };
 
         medicines.push(data)
@@ -56,7 +48,7 @@ $(document).ready(function () {
         if (confirm("The record will be save. Are you sure to submit?")) {
             console.log("sumit ", purchases);
             $.ajax({
-                url: "/purchase-pharmacy",
+                url: `/api/purchase-pharmacy` ,
                 type: 'POST',
                 contentType: "application/json",
                 dataType: 'JSON',
@@ -66,19 +58,13 @@ $(document).ready(function () {
                 }
             });
         }
+    });
 
-
-        // $.ajax({
-        //     url: actionurl,
-        //     type: 'post',
-        //     dataType: 'application/json',
-        //     data: $("#purchase_form").serialize(),
-        //     success: function(data) {
-        //
-        //     }
-        // });
-
-
+    $('#cash').on('input', function (){
+        let cash = $(this).val();
+        let total = $("#amount").val();
+        let change = cash - total;
+        $("#change").val(change.toFixed(2));
     });
 
 
@@ -90,8 +76,23 @@ $(document).ready(function () {
             alert("Some fields are required!")
             return
         }
+
+        medicines[medicines.length - 1].qty = qty
+
         table_medicines_template(medicine_table, qty);
+
+        $("#amount").val(computeTotal(medicines,qty).toFixed(2));
     });
+
+
+
+    function computeTotal(obj, qty) {
+        let total = 0;
+        medicines.map((obj) => {
+            total += obj.price * qty;
+        });
+        return total;
+    }
 
 
 
@@ -110,9 +111,10 @@ $(document).ready(function () {
 
 
     function table_medicines_template(medicine_table, qty) {
+        const price = Math.round((medicine_table.price) * 1e12) / 1e12;
         $('#table-medicine').append(` <tr>
                                                 <th scope="row">${medicine_table.medicine_name}</th>
-                                                <td>${medicine_table.price}</td>
+                                                <td>${price.toFixed(2)}</td>
                                                 <td>${qty}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></button>

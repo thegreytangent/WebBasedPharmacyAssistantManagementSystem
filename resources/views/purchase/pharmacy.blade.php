@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="assets/css/dark-theme.css"/>
     <link rel="stylesheet" href="assets/css/semi-dark.css"/>
     <link rel="stylesheet" href="assets/css/header-colors.css"/>
-    <link rel="stylesheet" href="{{asset('assets/npm/select2%404.1.0-rc.0/dist/css/select2.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/npm/select2-bootstrap-5-theme%401.3.0/dist/select2-bootstrap-5-theme.min.css')}}"/>
+{{--    <link rel="stylesheet" href="{{asset('assets/npm/select2%404.1.0-rc.0/dist/css/select2.min.css')}}"/>--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/npm/select2-bootstrap-5-theme%401.3.0/dist/select2-bootstrap-5-theme.min.css')}}"/>--}}
 
 
     <title>Pharmacist</title>
@@ -91,7 +91,7 @@
                                 <div class="row text-center">
                                     <div class="col col-8"> {!!  $medicines !!}</div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="qty" placeholder="Quantity">
+                                        <input type="number" class="form-control" id="qty" placeholder="Quantity">
                                     </div>
 
 
@@ -126,6 +126,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <form action="" id="purchase_form">
+                                    @csrf()
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row g-3">
                                             <div class="col-md-6">
@@ -139,20 +140,20 @@
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputCostPerPrice" class="form-label">Customer Name:</label>
-                                                <input type="text" id="customer_name" name="customer_name" placeholder="Customer Name" class="form-control"  />
+                                                {!! Form::select('customer', $customers,null, ['class' => 'form-control', 'placeholder' => '-- Select Customer --']); !!}
                                             </div>
 
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Total Amount:</label>
-                                                <input type="text" id="amount" name="amount" placeholder="Amount" class="form-control"  />
+                                                <input type="text" id="amount" name="amount" placeholder="Amount" readonly class="form-control"  />
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Cash:</label>
-                                                <input type="text" id="cash" name="cash" placeholder="Cash" class="form-control"  />
+                                                <input type="number" id="cash" name="cash" placeholder="Cash" class="form-control"  />
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Change:</label>
-                                                <input type="text" id="change" name="change" placeholder="Change" class="form-control"  />
+                                                <input readonly type="text" id="change" name="change" placeholder="Change" class="form-control"  />
                                             </div>
 
 

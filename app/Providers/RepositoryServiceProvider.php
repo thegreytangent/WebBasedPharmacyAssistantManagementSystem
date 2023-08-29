@@ -38,6 +38,11 @@
                 'App\Repositories\OrderRepository'
             );
 
+            $this->app->bind(
+                'Domain\Modules\Purchase\Repositories\IPurchaseRepository',
+                'App\Repositories\PurchaseRepository'
+            );
+
 
 
 

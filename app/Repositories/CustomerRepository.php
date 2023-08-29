@@ -56,4 +56,9 @@
           return $customer;
 
         }
+
+        public function All(): array
+        {
+           return DB::table('customers')->get()->toArray();
+        }
     }

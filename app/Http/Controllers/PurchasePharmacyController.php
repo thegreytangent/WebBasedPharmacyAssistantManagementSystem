@@ -2,31 +2,47 @@
 
     namespace App\Http\Controllers;
 
+    use Domain\Modules\Customer\Entities\Customer;
+    use Domain\Modules\Customer\Repositories\ICustomerRepository;
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
+    use Domain\Modules\Purchase\Entities\Purchase;
+    use Domain\Modules\Purchase\Entities\PurchaseMedicine;
+    use Domain\Shared\ValueObjects\Birthdate;
+    use Exception;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
 
     class PurchasePharmacyController extends Controller
     {
 
         protected IMedicineRepository $medicineRepository;
+        protected ICustomerRepository $customerRepository;
 
-        /**
-         * @param IMedicineRepository $medicineRepository
-         */
-        public function __construct(IMedicineRepository $medicineRepository)
+
+        public function __construct(IMedicineRepository $medicineRepository, ICustomerRepository $customerRepository)
         {
             $this->medicineRepository = $medicineRepository;
+            $this->customerRepository = $customerRepository;
         }
 
 
         public function index()
         {
             $medicines = $this->medicine_select_templates();
+            $customers = $this->customerRepository->All();
+
+            $customers = collect($customers)->mapWithKeys(function ($customer) {
+                $c = new Customer($customer->firstname, $customer->lastname, new Birthdate($customer->birthdate), $customer->id);
+                return [$c->getId() => $c->completeName()];
+            });
+
+
             return view('purchase.pharmacy')->with([
-                'medicines' => $medicines
+                'medicines' => $medicines,
+                'customers' => $customers
+
             ]);
         }
-
-
 
         private function medicine_select_templates(): string
         {
@@ -40,9 +56,9 @@
             foreach ($group_categories as $category => $medicines) {
                 $medicines_string = "";
                 foreach ($medicines as $medicine) {
-                    $medicines_string .= ' <option price="'.$medicine->price.'" value="'.$medicine->id.'">'.$medicine->medicine_name.'</option>';
+                    $medicines_string .= ' <option price="' . $medicine->price . '" value="' . $medicine->id . '">' . $medicine->medicine_name . '</option>';
                 }
-                $result .= '<optgroup label="' . $category . '">'.$medicines_string.'</optgroup>';
+                $result .= '<optgroup label="' . $category . '">' . $medicines_string . '</optgroup>';
             }
 
 
@@ -50,5 +66,43 @@
                                 <option></option>
                                 ' . $result . '
                                     </select>';
+        }
+
+        public function store(Request $req)
+        {
+            try {
+                $val = Validator::make($req->all(), [
+                    'customer'       => 'required',
+                    'date'           => 'required|date',
+                    'receipt_number' => 'required',
+                    'medicines'      => 'required|array',
+                    'cash'           => 'required'
+                ]);
+
+                if ($val->fails()) {
+                    throw new Exception($val->getMessageBag());
+                }
+
+                $purchase = new Purchase(
+                    $req->input('date'), $req->input('receipt_number'),$req->input('cash')
+                );
+
+
+                foreach ($req->input('medicines') as $med) {
+                    $purchase->setPurchaseMedicines(new PurchaseMedicine($med['qty'], $med['price']));
+                }
+
+
+                dd($purchase);
+
+
+            } catch (Exception $exception) {
+                return response()->json([
+                    'success' => false,
+                    'errmsg'  => $exception->getMessage()
+                ], 500);
+            }
+
+
         }
     }

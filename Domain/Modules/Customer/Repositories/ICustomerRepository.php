@@ -17,5 +17,8 @@
 
         public function Find(string $id) : Customer | null;
 
+        public function All() : array;
+
+
 
 	}

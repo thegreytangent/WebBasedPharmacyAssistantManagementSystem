@@ -29,3 +29,4 @@
     Route::resource('/order', 'OrderController');
     Route::resource('/purchase', 'PurchaseController');
     Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
+    Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
