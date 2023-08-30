@@ -60,7 +60,7 @@
             </a>
         </li>
         <li>
-            <a href="/purchases">
+            <a href="/purchase">
                 <div class="parent-icon"><i class="bx bxs-user-plus"></i>
                 </div>
                 <div class="menu-title">Customer Purchases</div>

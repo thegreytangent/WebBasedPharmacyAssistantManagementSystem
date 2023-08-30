@@ -4,6 +4,7 @@
 
     use Domain\Modules\Purchase\Entities\Purchase;
     use Domain\Modules\Purchase\Entities\PurchaseMedicine;
+    use Illuminate\Contracts\Pagination\Paginator;
 
     interface IPurchaseRepository
     {
@@ -16,6 +17,6 @@
 
         public function Delete(string $id): void;
 
-        public function GetAllPaginate(int $page, int $limit): array;
+        public function GetAllPaginate(int $page, int $limit): Paginator;
 
     }

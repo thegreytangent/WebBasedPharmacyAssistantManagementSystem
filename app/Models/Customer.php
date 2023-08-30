@@ -14,4 +14,8 @@ class Customer extends Model
     protected $table = 'customers';
     protected $keyType = 'string';
     protected $guarded = [];
+
+    public function completeName() : string {
+        return $this->lastname .", ". $this->firstname;
+    }
 }

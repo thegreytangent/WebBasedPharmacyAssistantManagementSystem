@@ -5,7 +5,9 @@
     use Domain\Modules\Purchase\Entities\Purchase;
     use Domain\Modules\Purchase\Entities\PurchaseMedicine;
     use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
+    use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Support\Facades\DB;
+    use App\Models\Purchase as PurchaseDB;
 
     class PurchaseRepository extends Repository implements IPurchaseRepository
     {
@@ -45,11 +47,11 @@
 
         public function Delete(string $id): void
         {
-            // TODO: Implement Delete() method.
+           DB::table('purchases')->where(['id' => $id])->delete();
         }
 
-        public function GetAllPaginate(int $page, int $limit): array
+        public function GetAllPaginate(int $page, int $limit): Paginator
         {
-            // TODO: Implement GetAllPaginate() method.
+           return PurchaseDB::with(['PurchaseMedicine'])->paginate($limit);
         }
     }
