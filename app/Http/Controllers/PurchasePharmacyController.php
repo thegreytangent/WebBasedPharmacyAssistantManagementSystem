@@ -7,9 +7,11 @@
     use Domain\Modules\Medicine\Repositories\IMedicineRepository;
     use Domain\Modules\Purchase\Entities\Purchase;
     use Domain\Modules\Purchase\Entities\PurchaseMedicine;
+    use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
     use Domain\Shared\ValueObjects\Birthdate;
     use Exception;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
 
     class PurchasePharmacyController extends Controller
@@ -17,12 +19,13 @@
 
         protected IMedicineRepository $medicineRepository;
         protected ICustomerRepository $customerRepository;
+        protected IPurchaseRepository $purchaseRepository;
 
-
-        public function __construct(IMedicineRepository $medicineRepository, ICustomerRepository $customerRepository)
+        public function __construct(IMedicineRepository $medicineRepository, ICustomerRepository $customerRepository, IPurchaseRepository $purchaseRepository)
         {
             $this->medicineRepository = $medicineRepository;
             $this->customerRepository = $customerRepository;
+            $this->purchaseRepository = $purchaseRepository;
         }
 
 
@@ -87,13 +90,23 @@
                     $req->input('date'), $req->input('receipt_number'),$req->input('cash')
                 );
 
+                $this->purchaseRepository->Save($purchase, $req->input('customer'));
 
                 foreach ($req->input('medicines') as $med) {
-                    $purchase->setPurchaseMedicines(new PurchaseMedicine($med['qty'], $med['price']));
+                    $this->purchaseRepository->SavePurchaseMedicine(
+                        new PurchaseMedicine($med['qty'], $med['price']),
+                        $purchase->getId(),$med['medicine_id']
+                    );
                 }
 
+                Session::flash('alert-success', 'Purchase medicine has been recorded.');
 
-                dd($purchase);
+                return response()->json([
+                    'success' => true
+                ]);
+
+
+
 
 
             } catch (Exception $exception) {

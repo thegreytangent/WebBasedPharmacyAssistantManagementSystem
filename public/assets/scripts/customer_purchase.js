@@ -46,7 +46,7 @@ $(document).ready(function () {
         purchases['medicines'] = medicines;
 
         if (confirm("The record will be save. Are you sure to submit?")) {
-            console.log("sumit ", purchases);
+
             $.ajax({
                 url: `/api/purchase-pharmacy` ,
                 type: 'POST',
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 dataType: 'JSON',
                 data:  JSON.stringify(purchases),
                 success: function(data) {
-                    console.log(data)
+                    location.reload();
                 }
             });
         }

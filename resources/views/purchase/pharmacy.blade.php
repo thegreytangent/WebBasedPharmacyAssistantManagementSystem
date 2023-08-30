@@ -86,6 +86,7 @@
                     <hr/>
                     <div class="form-body mt-4">
                         <div class="row">
+                            @include('template.alert')
                             <div class="col-lg-8">
 
                                 <div class="row text-center">
