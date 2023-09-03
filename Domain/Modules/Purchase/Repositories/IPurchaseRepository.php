@@ -21,4 +21,8 @@
 
         public function GetAllPurchaseMedicineByPaginate(int $page, int $limit): Paginator;
 
+        public function FindAllPurchaseMedicineByPaginate(int $page, int $limit, string $purchase_id) : Paginator;
+
+        public function Find(string $id) : object;
+
     }

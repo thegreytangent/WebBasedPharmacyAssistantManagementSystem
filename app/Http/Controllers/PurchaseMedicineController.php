@@ -18,7 +18,11 @@
 
         public function index(): View
         {
-            $data = $this->purchaseRepository->GetAllPurchaseMedicineByPaginate(1, 4);
+            $id = request()->input('purchase_id');
+
+            $purchase = $this->purchaseRepository->Find($id);
+
+            $data = $this->purchaseRepository->FindAllPurchaseMedicineByPaginate(1, 4, $id);
 
             $purchase_medicines = collect($data->items())->map(function ($item) {
                 return (object)[
@@ -29,10 +33,18 @@
                 ];
             });
 
+            $purchase = (object)[
+                'date'           => $purchase->date,
+                'customer_name' => $purchase->Customer->completeName(),
+                'receipt_number' => $purchase->receipt_number,
+                'total_amount'   => $purchase->total_amount,
+            ];
+
 
             return view('purchase_medicine.index')->with([
                 'purchase_medicines' => $purchase_medicines,
-                'pagination'         => ""
+                'purchase'           => $purchase,
+                'pagination'         => $data->links()
             ]);
         }
     }

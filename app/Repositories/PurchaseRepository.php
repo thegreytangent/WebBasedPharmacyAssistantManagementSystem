@@ -60,4 +60,14 @@
         {
             return PurchaseMedicineDB::with(['Medicine.Category'])->paginate($limit);
         }
+
+        public function FindAllPurchaseMedicineByPaginate(int $page, int $limit, string $purchase_id): Paginator
+        {
+            return PurchaseMedicineDB::with(['Medicine.Category'])->where(['purchase_id' => $purchase_id])->paginate($limit);
+        }
+
+        public function Find(string $id): object
+        {
+            return PurchaseDB::with(['PurchaseMedicine.Medicine'])->where(['id' => $id])->first();
+        }
     }
