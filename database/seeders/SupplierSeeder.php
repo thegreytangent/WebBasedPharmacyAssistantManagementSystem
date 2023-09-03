@@ -14,16 +14,16 @@
         public function run(): void
         {
             Supplier::create([
-                'name'    => fake()->company,
-                'contact_number' => fake()->numberBetween(1111111,99999999)
+                'name'           => 'Unitop',
+                'contact_number' => fake()->numberBetween(1111111, 99999999)
             ]);
             Supplier::create([
-                'name'    => fake()->company,
-                'contact_number' => fake()->numberBetween(1111111,99999999)
+                'name'           => 'Gaisano',
+                'contact_number' => fake()->numberBetween(1111111, 99999999)
             ]);
             Supplier::create([
-                'name'    => fake()->company,
-                'contact_number' => fake()->numberBetween(1111111,99999999)
+                'name'           => 'Lopues',
+                'contact_number' => fake()->numberBetween(1111111, 99999999)
             ]);
         }
     }
