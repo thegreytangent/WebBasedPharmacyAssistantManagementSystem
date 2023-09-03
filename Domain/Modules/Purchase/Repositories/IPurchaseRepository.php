@@ -19,4 +19,6 @@
 
         public function GetAllPaginate(int $page, int $limit): Paginator;
 
+        public function GetAllPurchaseMedicineByPaginate(int $page, int $limit): Paginator;
+
     }

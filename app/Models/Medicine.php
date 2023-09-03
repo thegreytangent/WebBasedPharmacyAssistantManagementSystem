@@ -24,4 +24,11 @@ class Medicine extends Model
     public function Supplier() : BelongsTo {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function getPrice() : string {
+        return number_format($this->price, 2);
+    }
+
+
+
 }

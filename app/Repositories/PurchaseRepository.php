@@ -8,6 +8,7 @@
     use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Support\Facades\DB;
     use App\Models\Purchase as PurchaseDB;
+    use App\Models\PurchaseMedicine as PurchaseMedicineDB;
 
     class PurchaseRepository extends Repository implements IPurchaseRepository
     {
@@ -53,5 +54,10 @@
         public function GetAllPaginate(int $page, int $limit): Paginator
         {
            return PurchaseDB::with(['PurchaseMedicine'])->paginate($limit);
+        }
+
+        public function GetAllPurchaseMedicineByPaginate(int $page, int $limit): Paginator
+        {
+            return PurchaseMedicineDB::with(['Medicine.Category'])->paginate($limit);
         }
     }
