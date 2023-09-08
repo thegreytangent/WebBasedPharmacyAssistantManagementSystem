@@ -23,4 +23,6 @@
         public function Find(string $id) : Builder|Model;
 
         public function CountBalance($id) : int;
+
+        public function GetInventoryBalance() : Paginator;
 	}

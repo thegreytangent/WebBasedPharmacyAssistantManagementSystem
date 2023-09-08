@@ -31,3 +31,5 @@
     Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
     Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
     Route::resource('/purchase-medicine', 'PurchaseMedicineController');
+    Route::get('/inventory', 'InventoryController@index');
+

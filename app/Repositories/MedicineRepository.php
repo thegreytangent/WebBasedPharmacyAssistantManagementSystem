@@ -78,4 +78,9 @@
             $sql .= "LEFT JOIN categories c on m.category_id = c.id" ;
             return $this->query($sql);
         }
+
+        public function GetInventoryBalance(): Paginator
+        {
+            return MedicineDB::with(['PurchaseMedicines','Orders'])->paginate(3);
+        }
     }
