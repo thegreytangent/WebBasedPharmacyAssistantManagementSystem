@@ -137,7 +137,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="inputCompareatprice" class="form-label">Receipt Number:</label>
-                                                <input type="text" id="receipt_number" value="eradf" readonly name="receipt_number" placeholder="Receipt Number" class="form-control"  />
+                                                <input type="text" id="receipt_number" value="{{$receipt_number}}" readonly name="receipt_number" placeholder="Receipt Number" class="form-control"  />
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputCostPerPrice" class="form-label">Customer Name:</label>

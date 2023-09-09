@@ -6,6 +6,19 @@
     use Illuminate\Support\Str;
     use Illuminate\Validation\Validator;
 
+    function generateReceiptNumber() : string {
+        return generateRandomLetters() .'-'. rand(9999,9999999);
+    }
+
+    function generateRandomLetters(): string {
+        $seed = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        shuffle($seed);
+        $rand = '';
+        foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
+        return $rand;
+    }
+
+
     function validateErrorResponse(Validator $validator): JsonResponse
     {
         return response()->json([

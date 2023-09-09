@@ -11,6 +11,7 @@
     use Domain\Shared\ValueObjects\Birthdate;
     use Exception;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Carbon;
     use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
 
@@ -42,7 +43,8 @@
 
             return view('purchase.pharmacy')->with([
                 'medicines' => $medicines,
-                'customers' => $customers
+                'customers' => $customers,
+                'receipt_number' => generateReceiptNumber()
 
             ]);
         }
