@@ -32,8 +32,6 @@
                                 <td>{{$inventory->in}}</td>
                                 <td>{{$inventory->out}}</td>
                                 <td>{{$inventory->balance}}</td>
-
-
                             </tr>
                             @endforeach
 

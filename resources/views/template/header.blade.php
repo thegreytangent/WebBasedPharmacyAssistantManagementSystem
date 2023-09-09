@@ -7,9 +7,8 @@
 
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center gap-1" style="margin-right:479px">
-                    <img width="100%" src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon" />
-
-                </ul>
+{{--                    <img width="100%" src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon" />--}}
+            </ul>
             </div>
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,7 +25,7 @@
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="/login"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+                    <li><a class="dropdown-item d-flex align-items-center" href="/logout"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
                     </li>
                 </ul>
             </div>
