@@ -11,7 +11,7 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <p class="mb-0 text-secondary">Total Orders</p>
-                                <h4 class="my-1 text-info">4805</h4>
+                                <h4 class="my-1 text-info">{{$total_orders}}</h4>
                                 <p class="mb-0 font-13">&nbsp;</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i
@@ -26,8 +26,8 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Total Revenue</p>
-                                <h4 class="my-1 text-danger">Php 84,245</h4>
+                                <p class="mb-0 text-secondary">Total Sales</p>
+                                <h4 class="my-1 text-danger">Php {{$total_sales}}</h4>
                                 <p class="mb-0 font-13">&nbsp;</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto"><i
@@ -43,7 +43,7 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <p class="mb-0 text-secondary">Number of Suppliers</p>
-                                <h4 class="my-1 text-success">3</h4>
+                                <h4 class="my-1 text-success">{{$total_suppliers}}</h4>
                                 <p class="mb-0 font-13">&nbsp;</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
@@ -86,8 +86,7 @@
                         <div class="d-flex align-items-center ms-auto font-13 gap-2 mb-3">
                                 <span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1"
                                                                                     style="color: #14abef"></i>Sales</span>
-                            <span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1"
-                                                                                style="color: #ffc107"></i>Visits</span>
+
                         </div>
                         <div class="chart-container-1">
                             <canvas id="chart1"></canvas>
@@ -145,12 +144,56 @@
             </div>
         </div><!--end row-->
 
-
     </div>
 @endsection
 
 @push('scripts')
     <script src="assets/js/index.js"></script>
+    <script>
+        var ctx = document.getElementById("chart1").getContext('2d');
+
+        var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
+        gradientStroke1.addColorStop(0, '#6078ea');
+        gradientStroke1.addColorStop(1, '#17c5ea');
+
+        var gradientStroke2 = ctx.createLinearGradient(0, 0, 0, 300);
+        gradientStroke2.addColorStop(0, '#ff8359');
+        gradientStroke2.addColorStop(1, '#ffdf40');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Sales',
+                    data: {{json_encode($monthly_sales)}},
+                    borderColor: gradientStroke1,
+                    backgroundColor: gradientStroke1,
+                    hoverBackgroundColor: gradientStroke1,
+                    pointRadius: 0,
+                    fill: false,
+                    borderRadius: 20,
+                    borderWidth: 0
+                }]
+            },
+
+            options: {
+                maintainAspectRatio: false,
+                barPercentage: 0.5,
+                categoryPercentage: 0.8,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endpush
 
 

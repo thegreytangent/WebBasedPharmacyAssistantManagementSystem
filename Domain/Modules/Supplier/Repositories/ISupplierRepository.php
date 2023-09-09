@@ -18,4 +18,6 @@
         public function Find(string $id) : Supplier | null;
 
         public function All(): array;
+
+        public function CountNumberOfSuppliers() : int;
 	}

@@ -29,6 +29,10 @@
             return $this->price;
         }
 
+        public function total() : int {
+            return $this->getQty() * $this->getPrice();
+        }
+
 
 
 

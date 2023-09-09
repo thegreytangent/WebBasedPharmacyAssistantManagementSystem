@@ -18,4 +18,6 @@
         public function Find(string $id) : Order | null;
 
         public function All(): array;
+
+        public function CountAllTotalOrders() : int;
 	}

@@ -51,4 +51,9 @@
                return new Supplier($supplier->name, new ContactNumber($supplier->contact_number), $supplier->id);
            })->toArray();
         }
+
+        public function CountNumberOfSuppliers(): int
+        {
+            return DB::table('suppliers')->count();
+        }
     }

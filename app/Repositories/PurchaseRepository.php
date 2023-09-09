@@ -9,6 +9,7 @@
     use Illuminate\Support\Facades\DB;
     use App\Models\Purchase as PurchaseDB;
     use App\Models\PurchaseMedicine as PurchaseMedicineDB;
+    use Illuminate\Support\Collection;
 
     class PurchaseRepository extends Repository implements IPurchaseRepository
     {
@@ -48,12 +49,12 @@
 
         public function Delete(string $id): void
         {
-           DB::table('purchases')->where(['id' => $id])->delete();
+            DB::table('purchases')->where(['id' => $id])->delete();
         }
 
         public function GetAllPaginate(int $page, int $limit): Paginator
         {
-           return PurchaseDB::with(['PurchaseMedicine'])->paginate($limit);
+            return PurchaseDB::with(['PurchaseMedicine'])->paginate($limit);
         }
 
         public function GetAllPurchaseMedicineByPaginate(int $page, int $limit): Paginator
@@ -69,5 +70,19 @@
         public function Find(string $id): object
         {
             return PurchaseDB::with(['PurchaseMedicine.Medicine'])->where(['id' => $id])->first();
+        }
+
+        public function GetAll(): Collection
+        {
+            return DB::table('purchase_medicines')->get();
+        }
+
+        public function GetAllMonthlySales(int $year): array
+        {
+            $sql = "SELECT MONTH(pm.created_at) as month, SUM(pm.price * pm.qty) as total ";
+            $sql .= "FROM purchase_medicines pm ";
+            $sql .= "WHERE year(created_at) = '".$year."' ";
+            $sql .= "GROUP BY MONTH(created_at);" ;
+            return $this->query($sql);
         }
     }

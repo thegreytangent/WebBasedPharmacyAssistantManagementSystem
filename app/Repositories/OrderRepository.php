@@ -53,4 +53,9 @@
         {
             // TODO: Implement All() method.
         }
+
+        public function CountAllTotalOrders(): int
+        {
+            return DB::table('orders')->count();
+        }
     }

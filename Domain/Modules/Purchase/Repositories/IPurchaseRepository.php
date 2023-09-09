@@ -5,6 +5,7 @@
     use Domain\Modules\Purchase\Entities\Purchase;
     use Domain\Modules\Purchase\Entities\PurchaseMedicine;
     use Illuminate\Contracts\Pagination\Paginator;
+    use Illuminate\Support\Collection;
 
     interface IPurchaseRepository
     {
@@ -24,5 +25,9 @@
         public function FindAllPurchaseMedicineByPaginate(int $page, int $limit, string $purchase_id) : Paginator;
 
         public function Find(string $id) : object;
+
+        public function GetAll() : Collection;
+
+        public function GetAllMonthlySales(int $year) : array;
 
     }
