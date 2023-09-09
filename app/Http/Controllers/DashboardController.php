@@ -32,7 +32,7 @@
             $count_suppliers = $this->supplierRepository->CountNumberOfSuppliers();
             $total_sales     = $this->totalSales();
             $monthly_sales   = $this->getMonthlySales();
-
+            
             return view('dashboard.index')->with([
                 'total_orders'    => $total_orders,
                 'total_sales'     => $total_sales,
@@ -62,7 +62,7 @@
                 $result[$i] = 0;
                 foreach ($sales as $sale) {
                     if ($sale->month == $i) {
-                        $result[$i] = $sale->total;
+                        $result[$i] = (float) $sale->total;
                     }
                 }
 

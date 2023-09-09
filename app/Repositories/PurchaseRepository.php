@@ -79,10 +79,9 @@
 
         public function GetAllMonthlySales(int $year): array
         {
-            $sql = "SELECT MONTH(pm.created_at) as month, SUM(pm.price * pm.qty) as total ";
-            $sql .= "FROM purchase_medicines pm ";
-            $sql .= "WHERE year(created_at) = '".$year."' ";
-            $sql .= "GROUP BY MONTH(created_at);" ;
+            $sql = "SELECT MONTH(p.date) as month, p.total_amount as total ";
+            $sql .= "FROM purchases p ";
+            $sql .= "WHERE YEAR(p.date) = '".$year."'" ;
             return $this->query($sql);
         }
     }
