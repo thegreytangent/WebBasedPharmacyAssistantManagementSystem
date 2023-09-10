@@ -45,10 +45,12 @@
                 <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
                 </div>
 
-
                 <div class="top-menu ms-auto">
-                    <ul class="navbar-nav align-items-center gap-1"></ul>
+                    <ul class="navbar-nav align-items-center gap-1" style="margin-right:479px">
+                        <img width="100%" src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon" />
+                    </ul>
                 </div>
+
                 <div class="user-box dropdown px-3">
                     <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">

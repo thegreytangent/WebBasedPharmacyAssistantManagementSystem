@@ -32,7 +32,8 @@
             $count_suppliers = $this->supplierRepository->CountNumberOfSuppliers();
             $total_sales     = $this->totalSales();
             $monthly_sales   = $this->getMonthlySales();
-            
+            $total_customers = 1;
+
             return view('dashboard.index')->with([
                 'total_orders'    => $total_orders,
                 'total_sales'     => $total_sales,
