@@ -16,6 +16,10 @@
     Route::get('/', function () {
         return view('welcome');
     });
+	
+	Route::group(['prefix' => 'customer'], function () {
+		Route::get('purchase', 'CustomerPurchaseController@index');
+	});
 
 
     Route::get('/', 'LoginController@index');
@@ -33,4 +37,6 @@
     Route::resource('/purchase-medicine', 'PurchaseMedicineController');
     Route::get('/inventory', 'InventoryController@index');
     Route::get('/logout', 'AuthController@logout');
+	
+	
 

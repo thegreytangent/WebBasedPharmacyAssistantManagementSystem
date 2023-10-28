@@ -8,6 +8,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\View\View;
 
@@ -53,6 +54,9 @@
                         'alert-danger' => 'Wrong credentials. Please try again'
                     ]);
                 }
+				
+				Session::put('role', $user->getRole());
+				
                 return redirect('/dashboard');
             }catch (\Exception $exception) {
                 return redirectWithAlert('login', [

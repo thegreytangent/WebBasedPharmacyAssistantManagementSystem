@@ -19,6 +19,11 @@
                 'password' => Hash::make('admin'),
                 'role'     => 'admin'
             ]);
+	        User::factory()->create([
+		        'username' => 'customer',
+		        'password' => Hash::make('customer'),
+		        'role'     => 'customer'
+	        ]);
             $this->call(CustomerSeeder::class);
             $this->call(CategorySeeder::class);
             $this->call(SupplierSeeder::class);
