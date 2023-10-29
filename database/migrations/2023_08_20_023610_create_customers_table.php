@@ -13,12 +13,21 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->uuid('id')->primary();
+			$table->uuid('user_id')->index();
             $table->string('firstname');
             $table->string('lastname');
             $table->date('birthdate');
             $table->text('address')->nullable();
 
             $table->timestamps();
+			
+			$table->foreign('user_id')
+		        ->references('id')
+		        ->on('users')
+		        ->onUpdate('CASCADE')
+		        ->onDelete('CASCADE');
+			
+			
         });
     }
 

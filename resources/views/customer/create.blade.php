@@ -22,6 +22,14 @@
                                     {!!  Form::open(['url' => 'customer', 'method' => 'POST']) !!}
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row g-3">
+                                            <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Username:</label>
+                                                {!! Form::text('username',null, ['class' => 'form-control', 'placeholder' => 'Username']); !!}
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Password:</label>
+                                                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']); !!}
+                                            </div>
 
                                             <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Firstname:</label>
@@ -37,7 +45,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Address:</label>
-                                                {!! Form::textarea('contact_number',null, [
+                                                {!! Form::textarea('address',null, [
 	                                                    'class' => 'form-control',
 	                                                    'placeholder' => 'Enter Address',
 	                                                    'rows' => '4'

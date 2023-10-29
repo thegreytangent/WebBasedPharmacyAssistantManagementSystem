@@ -4,6 +4,7 @@
 
     use Domain\Modules\Customer\Entities\Customer;
     use Domain\Modules\Customer\Repositories\ICustomerRepository;
+    use Domain\Modules\User\Entities\User;
     use Domain\Shared\ValueObjects\Birthdate;
     use Exception;
     use Illuminate\Http\Request;
@@ -114,6 +115,8 @@
             try {
 
                 $validate = Validator::make($req->all(), [
+					'username' => 'required',
+					'password' => 'required',
                     'firstname' => 'required',
                     'lastname'  => 'required',
                     'birthdate' => 'required'
@@ -130,6 +133,8 @@
                     $req->input('lastname'),
                     new Birthdate($req->input('birthdate')),
                 );
+				
+				$customer->setUser(new User($req->input('username'), $req->input('password'), 'customer'));
 
                 $customer->setAddress($req->input('address'));
 

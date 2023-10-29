@@ -2,6 +2,7 @@
 
     namespace Domain\Modules\Customer\Entities;
 
+    use Domain\Modules\User\Entities\User;
     use Domain\Shared\Entity;
     use Domain\Shared\ValueObjects\Birthdate;
 
@@ -11,7 +12,7 @@
         protected string $lastname;
         protected Birthdate $birthdate;
         protected string $address;
-
+		protected User $user;
 
         public function __construct(string $firstname, string $lastname, Birthdate $birthdate, ?string $id = null)
         {
@@ -20,10 +21,17 @@
             $this->lastname  = $lastname;
             $this->birthdate = $birthdate;
         }
+		
+		public function setUser(User $user) : void {
+			$this->user = $user;
+		}
+		
+		public function getUser() : User {
+			return $this->user;
+		}
+		
+		
 
-        /**
-         * @return string
-         */
         public function getBirthdate(): Birthdate
         {
             return $this->birthdate;

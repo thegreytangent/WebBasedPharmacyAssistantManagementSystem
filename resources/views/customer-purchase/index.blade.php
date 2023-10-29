@@ -1,4 +1,3 @@
-
 @extends('template.main')
 
 
@@ -6,10 +5,9 @@
     <div class="page-content">
         <div class="row">
             <div class="col-md-12">
-                <h6 class="mb-0 text-uppercase">Customer Information</h6>
+                <h6 class="mb-0 text-uppercase">List of your purchases</h6>
                 <hr/>
-                <a href="/customer/create" class="btn btn-success btn-sm ms-auto mb-3">
-                    <i class="bx bx-add-to-queue"> </i>Add New Customer</a>
+
                 <div class="card">
                     <div class="card-body">
 
@@ -18,10 +16,10 @@
                         <table class="table mb-0 table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Firstname</th>
-                                <th scope="col">Lastname</th>
-                                <th scope="col">Birthdate</th>
-                                <th scope="col">Address</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Cashier Name</th>
+                                <th scope="col">Receipt Number</th>
+                                <th scope="col">Total Amount</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -34,9 +32,13 @@
                                     <td> {{$customer->address }}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="/customer/{{$customer->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
-                                            <a href="#" id="{{$customer->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
-                                        </div> </td>
+                                            <a href="/customer/{{$customer->id}}" class="btn btn-info"><i
+                                                        class="bx bxs-edit"></i></a>
+                                            <a href="#" id="{{$customer->id}}"
+                                               class="btn btn-danger ms-3 button_delete"><i
+                                                        class="bx bxs-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -46,7 +48,7 @@
 
                         </table>
                         <div class="row mt-3">
-{{--                            {!! $pagination !!}--}}
+                            {{--                            {!! $pagination !!}--}}
                         </div>
                     </div>
                 </div>
@@ -54,7 +56,6 @@
         </div>
 
     </div>
-
 
 @endsection
 
