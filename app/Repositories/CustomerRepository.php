@@ -7,6 +7,7 @@
 	use Domain\Modules\User\Entities\User;
 	use Domain\Shared\ValueObjects\Birthdate;
 	use Illuminate\Contracts\Pagination\Paginator;
+	use Illuminate\Database\Eloquent\Collection;
 	use Illuminate\Support\Facades\DB;
 	use App\Models\Customer as CustomerDB;
 	
@@ -90,5 +91,10 @@
 		public function All(): array
 		{
 			return DB::table('customers')->get()->toArray();
+		}
+		
+		public function FindByUser(string $user_id): CustomerDB
+		{
+			return CustomerDB::where(['user_id' => $user_id])->first();
 		}
 	}

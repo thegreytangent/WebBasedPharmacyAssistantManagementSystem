@@ -8,6 +8,7 @@
 	use Exception;
 	use Illuminate\Http\RedirectResponse;
 	use Illuminate\Http\Request;
+	use Illuminate\Support\Facades\Auth;
 	use Illuminate\Support\Facades\Hash;
 	use Illuminate\Support\Facades\Session;
 	use Illuminate\Support\Facades\Validator;
@@ -50,13 +51,14 @@
 					throw new Exception('Username/Password not found!');
 				}
 				
-				if ($user->getUsername() != $username || Hash::check($password, $user->getPassword())) {
-					redirectWithAlert('/login', [
-						'alert-danger' => 'Wrong credentials. Please try again'
-					]);
+				if ($user->getUsername() != $username || !Hash::check($password, $user->getPassword())) {
+					throw new Exception('Wrong credentials. Please try again');
 				}
 				
+				
 				Session::put('role', $user->getRole());
+				
+				Auth::login(\App\Models\User::find($user->getId()));
 				
 				if ($user->getRole() == "customer") {
 					return redirect('/customer/purchase');

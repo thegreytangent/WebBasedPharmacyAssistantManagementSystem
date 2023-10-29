@@ -40,7 +40,6 @@
 				];
 			});
 			
-			
 			return view('customer.index')->with([
 				'customers'  => $customers,
 				'pagination' => $customer_data->links()
@@ -95,7 +94,6 @@
 					$id
 				);
 				
-				
 				$customer->setAddress($req->input('address'));
 				
 				$customer->setUser(new User(
@@ -109,8 +107,8 @@
 				return redirectWithAlert('customer', [
 					'alert-success' => 'New customers has been added'
 				]);
-				
-				
+			
+			
 			} catch (Exception $e) {
 				return redirectWithAlert('customer', [
 					'alert-danger' => $e->getMessage()

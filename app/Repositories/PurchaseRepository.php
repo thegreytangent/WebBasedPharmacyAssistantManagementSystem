@@ -84,4 +84,9 @@
             $sql .= "WHERE YEAR(p.date) = '".$year."'" ;
             return $this->query($sql);
         }
+		
+		public function  GetallCustomerPurchasesPaginate(string $customer_id, int $currentPage): Paginator
+		{
+			return PurchaseDB::where([ 'customer_id' => $customer_id])->paginate(5);
+		}
     }

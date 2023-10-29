@@ -17,24 +17,22 @@
                             <thead>
                             <tr>
                                 <th scope="col">Date</th>
-                                <th scope="col">Cashier Name</th>
                                 <th scope="col">Receipt Number</th>
                                 <th scope="col">Total Amount</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach([] as $customer)
+                            @foreach($purchases as $purchase)
                                 <tr>
-                                    <td>{{$customer->firstname}}</td>
-                                    <td>{{$customer->lastname}}</td>
-                                    <td>{{$customer->birthdate}}</td>
-                                    <td> {{$customer->address }}</td>
+                                    <td>{{$purchase->date}}</td>
+                                    <td>{{$purchase->receipt_number}}</td>
+                                    <td>{{$purchase->total_amount}}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="/customer/{{$customer->id}}" class="btn btn-info"><i
+                                            <a href="/customer/{{$purchase->id}}" class="btn btn-info"><i
                                                         class="bx bxs-edit"></i></a>
-                                            <a href="#" id="{{$customer->id}}"
+                                            <a href="#" id="{{$purchase->id}}"
                                                class="btn btn-danger ms-3 button_delete"><i
                                                         class="bx bxs-trash"></i></a>
                                         </div>
@@ -48,7 +46,7 @@
 
                         </table>
                         <div class="row mt-3">
-                            {{--                            {!! $pagination !!}--}}
+                                                        {!! $paginate !!}
                         </div>
                     </div>
                 </div>
