@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Customer extends Model
 {
@@ -18,4 +19,8 @@ class Customer extends Model
     public function completeName() : string {
         return $this->lastname .", ". $this->firstname;
     }
+	
+	public function User() : BelongsTo {
+		return $this->belongsTo(User::class);
+	}
 }
