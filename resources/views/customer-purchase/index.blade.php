@@ -30,7 +30,7 @@
                                     <td>{{$purchase->total_amount}}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="/customer/{{$purchase->id}}" class="btn btn-info"><i
+                                            <a href="#" class="btn btn-info"><i
                                                         class="bx bxs-edit"></i></a>
                                             <a href="#" id="{{$purchase->id}}"
                                                class="btn btn-danger ms-3 button_delete"><i

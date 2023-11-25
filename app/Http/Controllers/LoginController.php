@@ -12,6 +12,7 @@
 	use Illuminate\Support\Facades\Hash;
 	use Illuminate\Support\Facades\Session;
 	use Illuminate\Support\Facades\Validator;
+	use Illuminate\Support\Str;
 	use Illuminate\View\View;
 	
 	class LoginController extends Controller
@@ -57,6 +58,7 @@
 				
 				
 				Session::put('role', $user->getRole());
+				Session::put('username', $user->getUsername());
 				
 				Auth::login(\App\Models\User::find($user->getId()));
 				
