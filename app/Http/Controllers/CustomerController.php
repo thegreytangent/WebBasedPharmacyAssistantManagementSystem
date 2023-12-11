@@ -29,8 +29,10 @@
 			$customer_data = $this->customerRepository->GetAllPaginate(1, 10);
 			
 			$customers = collect($customer_data->items())->map(function ($c) {
-				$customer = new Customer($c->firstname, $c->lastname, new Birthdate($c->brithdate), $c->id);
+			
+				$customer = new Customer($c->firstname, $c->lastname, new Birthdate($c->birthdate), $c->id);
 				$customer->setAddress($c->address);
+				
 				return (object)[
 					'id'        => $customer->getId(),
 					'firstname' => $customer->getFirstname(),

@@ -21,6 +21,7 @@
 
         public function simpleFormat(): string
         {
+			
             return Carbon::create($this->date)->format('M, d, Y');
         }
 
