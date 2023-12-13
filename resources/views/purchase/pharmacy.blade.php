@@ -96,15 +96,11 @@
                                     <div class="col">
                                         <input type="number" class="form-control" id="qty" placeholder="Quantity">
                                     </div>
-
-
                                     <div class="col">
                                         <button id="add_to_table" type="button" class="btn btn-primary px-4">Add
                                         </button>
                                     </div>
                                 </div>
-
-
                                 <br/> <br/> <br/>
 
 
@@ -119,13 +115,19 @@
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
-                                            <tbody id="table-medicine">
-
-
-                                            </tbody>
+                                            <tbody id="table-medicine"></tbody>
                                         </table>
                                     </div>
+
+
                                 </div>
+
+                                <div style="margin-top: 15%; margin-left: 75%" class="col-3 mb-5">
+                                    <label for="inputCostPerPrice" class="form-label">Prescription:</label>
+                                    <input class="form-control" type="file">
+                                </div>
+
+
                             </div>
                             <div class="col-lg-4">
                                 <form action="" id="purchase_form">
@@ -145,7 +147,6 @@
                                                 <label for="inputCostPerPrice" class="form-label">Customer Name:</label>
                                                 {!! Form::select('customer', $customers,null, ['class' => 'form-control', 'placeholder' => '-- Select Customer --']); !!}
                                             </div>
-
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Total Amount:</label>
                                                 <input type="text" id="amount" name="amount" placeholder="Amount" readonly class="form-control"  />
@@ -158,7 +159,6 @@
                                                 <label for="inputVendor" class="form-label">Change:</label>
                                                 <input readonly type="text" id="change" name="change" placeholder="Change" class="form-control"  />
                                             </div>
-
 
                                             <div class="col-12">
                                                 <div class="d-grid">

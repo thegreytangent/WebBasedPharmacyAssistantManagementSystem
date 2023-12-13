@@ -16,21 +16,32 @@
     Route::get('/', function () {
         return view('welcome');
     });
+	
+	Route::group(['prefix' => 'customer'], function () {
+		Route::get('purchase', 'CustomerPurchaseController@index');
+	});
 
 
     Route::get('/', 'LoginController@index');
     Route::get('/login', 'LoginController@index');
     Route::post('/login', 'LoginController@login');
-    Route::get('/dashboard', 'DashboardController@index');
-    Route::resource('/supplier', 'SupplierController');
-    Route::resource('/category', 'CategoryController');
-    Route::resource('/medicine', 'MedicineController');
-    Route::resource('/customer', 'CustomerController');
-    Route::resource('/order', 'OrderController');
-    Route::resource('/purchase', 'PurchaseController');
-    Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
-    Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
-    Route::resource('/purchase-medicine', 'PurchaseMedicineController');
-    Route::get('/inventory', 'InventoryController@index');
-    Route::get('/logout', 'AuthController@logout');
+	
+	Route::group(['middleware' => 'auth'], function (){
+		Route::get('/dashboard', 'DashboardController@index');
+		Route::resource('/supplier', 'SupplierController');
+		Route::resource('/category', 'CategoryController');
+		Route::resource('/medicine', 'MedicineController');
+		Route::resource('/customer', 'CustomerController');
+		Route::resource('/order', 'OrderController');
+		Route::resource('/purchase', 'PurchaseController');
+		Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
+		Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
+		Route::resource('/purchase-medicine', 'PurchaseMedicineController');
+		Route::get('/inventory', 'InventoryController@index');
+		Route::get('/logout', 'AuthController@logout');
+	});
+	
+ 
+	
+	
 

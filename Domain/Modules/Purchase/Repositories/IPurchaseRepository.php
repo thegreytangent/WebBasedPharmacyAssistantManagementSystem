@@ -29,5 +29,9 @@
         public function GetAll() : Collection;
 
         public function GetAllMonthlySales(int $year) : array;
-
+		
+		public function GetallCustomerPurchasesPaginate(
+			string $customer_id, int $currentPage
+		) : Paginator;
+	   
     }

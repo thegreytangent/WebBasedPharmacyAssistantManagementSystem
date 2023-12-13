@@ -2,10 +2,12 @@
 
 	namespace Domain\Modules\Customer\Repositories;
 
+	use App\Models\Customer as CustomerDB;
 	use Domain\Modules\Customer\Entities\Customer;
     use Illuminate\Contracts\Pagination\Paginator;
-
-    interface ICustomerRepository
+	use Illuminate\Database\Eloquent\Collection;
+	
+	interface ICustomerRepository
 	{
         public function Save(Customer $customer): void;
 
@@ -18,7 +20,9 @@
         public function Find(string $id) : Customer | null;
 
         public function All() : array;
-
+	
+		
+		public function FindByUser(string $user_id) : CustomerDB;
 
 
 	}

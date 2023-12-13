@@ -3,8 +3,9 @@
     namespace Domain\Modules\User\Entities;
 
 	use Domain\Shared\Entity;
-
-    class User extends Entity
+	use Illuminate\Support\Facades\Hash;
+	
+	class User extends Entity
 	{
         protected string $username;
         protected string $password;
@@ -33,6 +34,10 @@
         {
             return $this->password;
         }
+		
+		public function encryptedPassword() : string {
+			return Hash::make($this->password);
+		}
 
         /**
          * @return string

@@ -24,6 +24,14 @@
                                         <div class="row g-3">
 
                                             <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Username:</label>
+                                                {!! Form::text('username',$customer->username, ['class' => 'form-control', 'placeholder' => 'Username']); !!}
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Password:</label>
+                                                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']); !!}
+                                            </div>
+                                            <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Firstname:</label>
                                                 {!! Form::text('firstname',$customer->firstname, ['class' => 'form-control', 'placeholder' => 'Firstname']); !!}
                                             </div>
@@ -60,9 +68,6 @@
         </div>
 
 
-
-
     </div>
-
 
 @endsection
