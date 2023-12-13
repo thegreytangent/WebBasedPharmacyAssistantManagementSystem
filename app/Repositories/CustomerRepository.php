@@ -70,7 +70,10 @@
 		
 		public function Delete(string $id): void
 		{
+			$customer = DB::table('customers')->find($id);
+			DB::table('users')->delete($customer->user_id);
 			DB::table('customers')->delete($id);
+			
 		}
 		
 		public function GetAllPaginate(int $page, int $count): Paginator
