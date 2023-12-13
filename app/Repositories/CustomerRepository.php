@@ -22,7 +22,7 @@
 			DB::table('users')->insert([
 				'id'         => $user->getId(),
 				'username'   => $user->getUsername(),
-				'password'   => $user->getPassword(),
+				'password'   => $user->encryptedPassword(),
 				'role'       => $user->getRole(),
 				'created_at' => now(),
 				'updated_at' => now(),
