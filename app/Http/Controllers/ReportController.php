@@ -20,14 +20,15 @@
 			$purchases_data = $this->purchaseRepository->GetAll();
 			
 			$purchases = collect($purchases_data)->map(function ($pu) {
+				$purchase = $pu->Purchase;
 				return (object) [
 					'id'             => $pu->id,
-					'date'           => $pu->getDateDisplay(),
-					'receipt_number' => $pu->receipt_number,
-					'customer_name'  => $pu->Customer->completeName(),
-					'amount'         => $pu->getAmount(),
+					'date'           => $purchase->getDateDisplay(),
+					'receipt_number' => $purchase->receipt_number,
+					'amount'         => $purchase->getAmount(),
 				];
 			});
+			
 			
 			return view('report.purchase_report')->with([
 				'purchases'  => $purchases

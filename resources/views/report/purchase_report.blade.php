@@ -1,4 +1,4 @@
-<?php require_once('../../../core/init.php'); ?>
+
         <!DOCTYPE html>
 <html lang="en">
 
@@ -24,32 +24,35 @@
 <body>
 <h3 class="center">Digital Pharmacy Assistant Management System</h3>
 <h4 class="center">Purchases Information</h4>
-<table>
+<table style="text-align: center">
     <thead>
     <b>
         <tr>
-            <th>Name</th>
-            <th>Skill</th>
-            <th>Phone</th>
-            <th>Status</th>
+            <th>Date</th>
+            <th>Receipt Number</th>
+            <th>Total Amount</th>
         </tr>
     </b>
     </thead>
     <tbody>
+    @foreach($purchases as $purchase)
     <tr>
-        <td></td>
+        <td>{{$purchase->date}}</td>
+        <td>{{$purchase->receipt_number}}</td>
+        <td>{{$purchase->amount}}</td>
     </tr>
+        @endforeach
     </tbody>
 </table>
 
 
 </body>
 
-{{--<script>--}}
-{{--    window.print();--}}
-{{--    window.onafterprint = function(event) {--}}
-{{--        window.location.href = '../../../index.php?page=worker'--}}
-{{--    };--}}
-{{--</script>--}}
+<script>
+    window.print();
+    window.onafterprint = function(event) {
+        window.location.href = '/purchase'
+    };
+</script>
 
 </html>
