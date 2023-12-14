@@ -63,7 +63,7 @@
 </li>
 <li class="menu-label">Reports</li>
 <li>
-    <a href="javascript:">
+    <a href="/purchase-report">
         <div class="parent-icon"><i class="bx bx-printer"></i>
         </div>
         <div class="menu-title">Reports</div>

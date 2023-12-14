@@ -74,7 +74,7 @@
 
         public function GetAll(): Collection
         {
-            return DB::table('purchase_medicines')->get();
+            return PurchaseMedicineDB::all();
         }
 
         public function GetAllMonthlySales(int $year): array
