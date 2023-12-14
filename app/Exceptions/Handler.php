@@ -26,7 +26,8 @@ class Handler extends ExceptionHandler
 	
 	public function render($request, Throwable $e)
 	{
-		return Redirect::to('/login');
+         return Redirect::to('/login');
+		
 	}
 	
 	public function register(): void
