@@ -55,6 +55,7 @@
 		
 		public function show($id)
 		{
+
 			$customer = $this->customerRepository->Find($id);
 			
 			
