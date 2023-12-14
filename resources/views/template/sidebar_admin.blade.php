@@ -30,13 +30,13 @@
         <div class="menu-title">Medicines</div>
     </a>
 </li>
-<li>
-    <a href="/customer">
-        <div class="parent-icon"><i class="bx bxs-user-plus"></i>
-        </div>
-        <div class="menu-title">Customers</div>
-    </a>
-</li>
+{{--<li>--}}
+{{--    <a href="/customer">--}}
+{{--        <div class="parent-icon"><i class="bx bxs-user-plus"></i>--}}
+{{--        </div>--}}
+{{--        <div class="menu-title">Customers</div>--}}
+{{--    </a>--}}
+{{--</li>--}}
 <li class="menu-label">Operations</li>
 <li>
     <a href="/order">

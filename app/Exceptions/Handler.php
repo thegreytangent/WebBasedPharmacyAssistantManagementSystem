@@ -26,6 +26,9 @@ class Handler extends ExceptionHandler
 	
 	public function render($request, Throwable $e)
 	{
+		if ($e->getMessage()) {
+			return response()->json($e);
+		}
 		return Redirect::to('/login');
 	}
 	

@@ -143,10 +143,10 @@
                                                 <label for="inputCompareatprice" class="form-label">Receipt Number:</label>
                                                 <input type="text" id="receipt_number" value="{{$receipt_number}}" readonly name="receipt_number" placeholder="Receipt Number" class="form-control"  />
                                             </div>
-                                            <div class="col-12">
-                                                <label for="inputCostPerPrice" class="form-label">Customer Name:</label>
-                                                {!! Form::select('customer', $customers,null, ['class' => 'form-control', 'placeholder' => '-- Select Customer --']); !!}
-                                            </div>
+{{--                                            <div class="col-12">--}}
+{{--                                                <label for="inputCostPerPrice" class="form-label">Customer Name:</label>--}}
+{{--                                                {!! Form::select('customer', $customers,null, ['class' => 'form-control', 'placeholder' => '-- Select Customer --']); !!}--}}
+{{--                                            </div>--}}
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Total Amount:</label>
                                                 <input type="text" id="amount" name="amount" placeholder="Amount" readonly class="form-control"  />
