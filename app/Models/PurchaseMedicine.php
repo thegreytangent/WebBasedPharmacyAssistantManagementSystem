@@ -20,6 +20,10 @@ class PurchaseMedicine extends Model
     public function Medicine() : BelongsTo {
         return $this->belongsTo(Medicine::class);
     }
+	
+	public function Purchase() : BelongsTo {
+		return $this->belongsTo(Purchase::class);
+	}
 
 
 }

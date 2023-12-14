@@ -19,7 +19,6 @@
                             <tr>
                                 <th scope="col">Date</th>
                                 <th scope="col">Receipt Number</th>
-                                <th scope="col">Customer Name</th>
                                 <th scope="col">Total Amount</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -30,7 +29,6 @@
                                 <tr>
                                     <td>{{$purchase->date}}</td>
                                     <td>{{$purchase->receipt_number}}</td>
-                                    <td> {{$purchase->customer_name }}</td>
                                     <td> {{$purchase->amount }}</td>
                                     <td>
                                         <div class="d-flex order-actions">

@@ -39,6 +39,7 @@
 		Route::resource('/purchase-medicine', 'PurchaseMedicineController');
 		Route::get('/inventory', 'InventoryController@index');
 		Route::get('/logout', 'AuthController@logout');
+		Route::get('/purchase-report', 'ReportController@purchase');
 	});
 	
 

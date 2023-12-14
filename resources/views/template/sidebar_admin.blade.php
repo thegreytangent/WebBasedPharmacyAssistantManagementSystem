@@ -30,13 +30,13 @@
         <div class="menu-title">Medicines</div>
     </a>
 </li>
-<li>
-    <a href="/customer">
-        <div class="parent-icon"><i class="bx bxs-user-plus"></i>
-        </div>
-        <div class="menu-title">Customers</div>
-    </a>
-</li>
+{{--<li>--}}
+{{--    <a href="/customer">--}}
+{{--        <div class="parent-icon"><i class="bx bxs-user-plus"></i>--}}
+{{--        </div>--}}
+{{--        <div class="menu-title">Customers</div>--}}
+{{--    </a>--}}
+{{--</li>--}}
 <li class="menu-label">Operations</li>
 <li>
     <a href="/order">
@@ -63,7 +63,7 @@
 </li>
 <li class="menu-label">Reports</li>
 <li>
-    <a href="javascript:">
+    <a href="/purchase-report">
         <div class="parent-icon"><i class="bx bx-printer"></i>
         </div>
         <div class="menu-title">Reports</div>

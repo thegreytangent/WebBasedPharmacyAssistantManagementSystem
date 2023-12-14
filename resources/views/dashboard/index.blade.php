@@ -100,45 +100,25 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h6 class="mb-0">Trending Categories</h6>
+                                <h6 class="mb-0">Most Medicine Purchase</h6>
                             </div>
                             <div class="dropdown ms-auto">
                                 <a class="dropdown-toggle dropdown-toggle-nocaret" href="#"
                                    data-bs-toggle="dropdown"><i
                                         class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="javascript:">Action</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="javascript:">Another action</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="javascript:">Something else here</a>
-                                    </li>
-                                </ul>
+
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="chart-container-2">
-                            <canvas id="chart2"></canvas>
-                        </div>
-                    </div>
+
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center border-top">
-                            Analgesics <span class="badge bg-success rounded-pill">25</span>
+
+                        @foreach($medicines as $medicine)
+                            <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center border-top">
+                            {{$medicine->name}} <span class="badge  {{$medicine->bg}} rounded-pill">{{$medicine->count}} </span>
                         </li>
-                        <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                            Antacids <span class="badge bg-danger rounded-pill">10</span>
-                        </li>
-                        <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                            Cold Cures <span class="badge bg-primary rounded-pill">65</span>
-                        </li>
-                        <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                            Sedatives <span class="badge bg-warning text-dark rounded-pill">14</span>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -148,8 +128,16 @@
 @endsection
 
 @push('scripts')
-    <script src="assets/js/index.js"></script>
+{{--    <script src="assets/js/index.js"></script>--}}
     <script>
+
+
+      
+
+
+
+
+
         var ctx = document.getElementById("chart1").getContext('2d');
 
         var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);

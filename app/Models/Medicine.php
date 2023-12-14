@@ -54,12 +54,26 @@ class Medicine extends Model
         }
         return $result;
     }
+	
+	public function totalCountPurchase() {
+		return 1;
+	}
 
     public function inventoryBalance() : int {
         $in = $this->getTotalOrders();
         $out = $this->getTotalCustomerPurchases();
         return !$in ? 0 : $in - $out;
     }
+	
+	public function bgColor($count) {
+		if ($count > 20 && $count < 100 ) {
+			return 'bg-info';
+		} elseif ( $count < 20 ) {
+			return 'bg-danger';
+		} else {
+			return 'bg-success';
+		}
+	}
 
 
 

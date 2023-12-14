@@ -14,6 +14,7 @@
     use Illuminate\Support\Carbon;
     use Illuminate\Support\Facades\Session;
     use Illuminate\Support\Facades\Validator;
+	use App\Models\Customer as CustomerDB;
 
     class PurchasePharmacyController extends Controller
     {
@@ -76,8 +77,9 @@
         public function store(Request $req)
         {
             try {
+				
+				
                 $val = Validator::make($req->all(), [
-                    'customer'       => 'required',
                     'date'           => 'required|date',
                     'receipt_number' => 'required',
                     'medicines'      => 'required|array',
@@ -91,8 +93,8 @@
                 $purchase = new Purchase(
                     $req->input('date'), $req->input('receipt_number'),$req->input('cash')
                 );
-
-                $this->purchaseRepository->Save($purchase, $req->input('customer'));
+				$customer = CustomerDB::first();
+                $this->purchaseRepository->Save($purchase, $customer->id);
 
                 foreach ($req->input('medicines') as $med) {
                     $this->purchaseRepository->SavePurchaseMedicine(
