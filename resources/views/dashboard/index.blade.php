@@ -59,7 +59,7 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <p class="mb-0 text-secondary">Total Customers</p>
-                                <h4 class="my-1 text-warning">8,400</h4>
+                                <h4 class="my-1 text-warning">{{$total_customers}}</h4>
                                 <p class="mb-0 font-13">&nbsp;</p>
                             </div>
                             <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i

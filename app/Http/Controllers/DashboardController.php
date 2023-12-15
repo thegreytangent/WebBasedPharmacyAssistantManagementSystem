@@ -9,6 +9,7 @@
 	use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
 	use Domain\Modules\Supplier\Repositories\ISupplierRepository;
 	use Illuminate\Http\Request;
+	use Illuminate\Support\Facades\DB;
 	use Illuminate\View\View;
 	
 	class DashboardController extends Controller
@@ -33,13 +34,13 @@
 			$count_suppliers = $this->supplierRepository->CountNumberOfSuppliers();
 			$total_sales = $this->totalSales();
 			$monthly_sales = $this->getMonthlySales();
-			$total_customers = 1;
+			$total_customers = DB::table('customers')->count();
 			$medicines = Medicine::with('PurchaseMedicines')->get();
 			
 			
 			$medicines = $medicines->map(function ($i) {
 				$count = $i->getTotalCustomerPurchases();
-				return (object) [
+				return (object)[
 					'name'  => $i->medicine_name,
 					'count' => $count,
 					'bg'    => $i->bgColor($count)
@@ -47,9 +48,12 @@
 			});
 			
 			
+			
+			
 			return view('dashboard.index')->with([
 				'total_orders'    => $total_orders,
-				'total_sales'     => $total_sales,
+				'total_sales'     => number_format($total_sales, 2),
+				'total_customers' => $total_customers,
 				'total_suppliers' => $count_suppliers,
 				'monthly_sales'   => array_values($monthly_sales),
 				'medicines'       => $medicines
@@ -59,11 +63,12 @@
 		public function totalSales(): int
 		{
 			$result = 0;
-			$purchases = $this->purchaseRepository->GetAll();
+			$purchases = DB::table('purchases')->get();
 			foreach ($purchases as $purchase) {
-				$d_purchase = new PurchaseMedicine($purchase->qty, $purchase->price);
-				$result += $d_purchase->total();
+				$result += $purchase->total_amount;
+				
 			}
+		
 			return $result;
 		}
 		
