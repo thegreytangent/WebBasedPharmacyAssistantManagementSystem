@@ -22,7 +22,7 @@
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
 
     @stack('styles')
-    <title>{{config('app.name')}}</title>
+    <title>Pharmacy Assistant Management System</title>
 </head>
 
 <body>
