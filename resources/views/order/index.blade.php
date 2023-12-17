@@ -34,7 +34,7 @@
                                 <td>{{$order->qty}}</td>
 
                                 <td>
-                                        <a href="#" class="btn btn-info btn-sm">
+                                    <a href="/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
                                             <i class="bx bxs-book-open"></i> View Records
                                         </a>
                                 </td>

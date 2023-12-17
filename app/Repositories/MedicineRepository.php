@@ -8,9 +8,8 @@
     use Illuminate\Contracts\Pagination\Paginator;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
-    use Illuminate\Support\Collection;
     use Illuminate\Support\Facades\DB;
-
+    
     class MedicineRepository extends Repository implements IMedicineRepository
     {
 
@@ -57,8 +56,9 @@
             return MedicineDB::with(['Category', 'Supplier'])->paginate(3);
 
         }
-
-        public function Find(string $id): Builder|Model
+	    
+	    
+	    public function Find(string $id): Builder|Model
         {
             return MedicineDB::with(['Category', 'Supplier'])->where([
                 'id' => $id
@@ -83,4 +83,11 @@
         {
             return MedicineDB::with(['PurchaseMedicines','Orders'])->paginate(3);
         }
+	    
+	    public function GetAllBySupplierPaginate(string $supplier_id, int $limit): Paginator
+	    {
+		    return MedicineDB::with(['Category', 'Supplier'])->where([
+			    'supplier_id' => $supplier_id
+		    ])->paginate(3);
+	    }
     }

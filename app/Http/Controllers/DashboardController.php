@@ -3,9 +3,12 @@
 	namespace App\Http\Controllers;
 	
 	use App\Models\Medicine;
+	use App\Models\Purchase;
+	use App\Models\PurchaseMedicine;
 	use Domain\Modules\Order\Repositories\IOrderRepository;
 	use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
 	use Domain\Modules\Supplier\Repositories\ISupplierRepository;
+	use Illuminate\Support\Carbon;
 	use Illuminate\Support\Facades\DB;
 	
 	class DashboardController extends Controller
@@ -26,7 +29,7 @@
 		
 		public function index()
 		{
-			$total_orders = \App\Models\Purchase::count();
+			$total_orders = Purchase::count();
 			$count_suppliers = $this->supplierRepository->CountNumberOfSuppliers();
 			$total_sales = $this->totalSales();
 			$monthly_sales = $this->getMonthlySales();
@@ -44,8 +47,6 @@
 			});
 			
 			
-			
-			
 			return view('dashboard.index')->with([
 				'total_orders'    => $total_orders,
 				'total_sales'     => number_format($total_sales, 2),
@@ -59,12 +60,12 @@
 		public function totalSales(): int
 		{
 			$result = 0;
-			$purchases = DB::table('purchases')->get();
+			$purchases = Purchase::all();
 			foreach ($purchases as $purchase) {
-				$result += $purchase->total_amount;
+				$result += $purchase->getAllTotalPurchase();
 				
 			}
-		
+			
 			return $result;
 		}
 		
@@ -72,18 +73,32 @@
 		public function getMonthlySales()
 		{
 			$result = [];
-			$sales = $this->purchaseRepository->GetAllMonthlySales(2023);
+			
+			$sales_data = Purchase::all()->groupBy(function ($val) {
+				return Carbon::parse($val->date)->format('m');
+			});
 			
 			for ($i = 1; $i <= 12; $i++) {
 				$result[$i] = 0;
-				foreach ($sales as $sale) {
-					if ($sale->month == $i) {
-						$result[$i] = (float)$sale->total;
+				$total = [];
+				foreach ($sales_data as $month => $sales) {
+					foreach ($sales as $sale) {
+						$purchases = PurchaseMedicine::where(['purchase_id' => $sale->id])->get();
+						if ($month == $i) {
+							foreach ($purchases as $purchase) {
+								$total[] = (float)$purchase->total();
+							}
+							
+						}
 					}
+					
 				}
+				
+				$result[$i] = array_sum($total);
 				
 				
 			}
+			
 			
 			return $result;
 		}

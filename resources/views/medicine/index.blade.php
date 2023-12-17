@@ -6,7 +6,7 @@
     <div class="page-content">
         <div class="row">
             <div class="col-md-12">
-                <h6 class="mb-0 text-uppercase">Medicine's Information</h6>
+                <h6 class="mb-0 text-uppercase">{{$module_title}}</h6>
                 <hr/>
                 <a href="/medicine/create" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add New Medicine</a>
