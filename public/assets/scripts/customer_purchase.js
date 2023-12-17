@@ -110,6 +110,8 @@ $(document).ready(function () {
         const id = $(this).attr('id');
         if (confirm("Do you want to delete this medicine?")) {
             $('#row-' + id).remove();
+            let i = medicines.findIndex(a => a.medicine_id == id);
+            medicines.splice(i, 1);
         }
 
     });
