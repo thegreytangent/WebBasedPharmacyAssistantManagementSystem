@@ -122,10 +122,6 @@
 
                                 </div>
 
-                                <div style="margin-top: 15%; margin-left: 75%" class="col-3 mb-5">
-                                    <label for="inputCostPerPrice" class="form-label">Prescription:</label>
-                                    <input class="form-control" type="file">
-                                </div>
 
 
                             </div>
