@@ -35,9 +35,9 @@
                                             <a href="/purchase-medicine?purchase_id={{$purchase->id}}"
                                                class="btn btn-success"><i
                                                     class="bx bxs-show"></i></a>
-{{--                                            <a href="#" id="{{$purchase->id}}"--}}
-{{--                                               class="btn btn-danger ms-3 button_delete"><i--}}
-{{--                                                    class="bx bxs-trash"></i></a>--}}
+                                            <a href="#" id="{{$purchase->id}}"
+                                               class="btn btn-danger ms-3 button_delete"><i
+                                                        class="bx bxs-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
