@@ -7,7 +7,7 @@
     use Illuminate\Database\Eloquent\Relations\BelongsTo;
     use Illuminate\Database\Eloquent\Relations\HasMany;
     use Illuminate\Support\Carbon;
-
+    
     class Purchase extends Model
     {
         use HasFactory;
@@ -47,10 +47,13 @@
 			foreach ($this->PurchaseMedicine as $p) {
 				$total += $p->total();
 			}
-			
-			
 			return $total;
 		}
+	    
+	    public function countAllPurchase(): int
+	    {
+		    return $this->PurchaseMedicine->count();
+	    }
 
 
     }

@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-6">
             <h6 class="mb-3 text-uppercase">Date: <b>{{ $purchase->date }}</b></h6>
-            <h6 class="mb-3 text-uppercase">Customer Name: <b>{{ $purchase->customer_name }}</b> </h6>
+                <h6 class="mb-3 text-uppercase">Total Purchase Qty: <b>{{ $purchase->total_qty }}</b></h6>
             </div>
             <div class="col-md-6">
                 <h6 class="mb-3 text-uppercase">Receipt Number: <b>{{ $purchase->receipt_number }}</b></h6>
