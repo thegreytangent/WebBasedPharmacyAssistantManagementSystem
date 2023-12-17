@@ -54,7 +54,7 @@ $(document).ready(function () {
                 dataType: 'JSON',
                 data:  JSON.stringify(purchases),
                 success: function(data) {
-                    // location.reload();
+                    location.reload();
                 }
             });
         }
