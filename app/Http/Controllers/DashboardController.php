@@ -4,13 +4,9 @@
 	
 	use App\Models\Medicine;
 	use Domain\Modules\Order\Repositories\IOrderRepository;
-	use Domain\Modules\Purchase\Entities\Purchase;
-	use Domain\Modules\Purchase\Entities\PurchaseMedicine;
 	use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
 	use Domain\Modules\Supplier\Repositories\ISupplierRepository;
-	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\DB;
-	use Illuminate\View\View;
 	
 	class DashboardController extends Controller
 	{
@@ -30,7 +26,7 @@
 		
 		public function index()
 		{
-			$total_orders = $this->orderRepository->CountAllTotalOrders();
+			$total_orders = \App\Models\Purchase::count();
 			$count_suppliers = $this->supplierRepository->CountNumberOfSuppliers();
 			$total_sales = $this->totalSales();
 			$monthly_sales = $this->getMonthlySales();
