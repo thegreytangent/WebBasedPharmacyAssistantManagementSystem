@@ -30,10 +30,9 @@
                     'date'           => $pu->getDateDisplay(),
                     'receipt_number' => $pu->receipt_number,
                     'customer_name'  => $pu->Customer->completeName(),
-                    'amount'         => $pu->getAmount(),
+                    'amount'         => number_format($pu->getAllTotalPurchase(), 2),
                 ];
             });
-
             return view('purchase.index')->with([
                 'purchases'  => $purchases,
                 'pagination' => $purchases_data->links()

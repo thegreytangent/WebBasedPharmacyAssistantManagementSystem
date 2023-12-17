@@ -27,6 +27,7 @@
         {
             return $this->hasMany(PurchaseMedicine::class);
         }
+		
 
         public function Customer() : BelongsTo {
             return $this->belongsTo(Customer::class);
@@ -40,6 +41,16 @@
 
             return number_format( $this->total_amount, 2);
         }
+		
+		public function getAllTotalPurchase() : float {
+			$total = 0;
+			foreach ($this->PurchaseMedicine as $p) {
+				$total += $p->total();
+			}
+			
+			
+			return $total;
+		}
 
 
     }
