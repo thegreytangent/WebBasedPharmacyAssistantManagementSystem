@@ -56,10 +56,10 @@
 </body>
 
 <script>
-    // window.print();
-    // window.onafterprint = function(event) {
-    //     window.location.href = '/purchase'
-    // };
+    window.print();
+    window.onafterprint = function (event) {
+        window.location.href = '/purchase'
+    };
 </script>
 
 </html>
