@@ -3,7 +3,6 @@
 	namespace App\Http\Controllers;
 	
 	use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
-	use Illuminate\Http\Request;
 	
 	class ReportController extends Controller
 	{
@@ -19,19 +18,28 @@
 		public function purchase() {
 			$purchases_data = $this->purchaseRepository->GetAll();
 			
-			$purchases = collect($purchases_data)->map(function ($pu) {
-				$purchase = $pu->Purchase;
-				return (object) [
+			$total = 0;
+			$result = [];
+			
+			foreach ($purchases_data as $pu) {
+				$t = $pu->getAllTotalPurchase();
+				
+				$result[] = (object)[
 					'id'             => $pu->id,
-					'date'           => $purchase->getDateDisplay(),
-					'receipt_number' => $purchase->receipt_number,
-					'amount'         => $purchase->getAmount(),
+					'date'           => $pu->getDateDisplay(),
+					'receipt_number' => $pu->receipt_number,
+					'amount'         => number_format($t, 2),
 				];
-			});
+				
+				$total += $t;
+				
+			}
+			
 			
 			
 			return view('report.purchase_report')->with([
-				'purchases'  => $purchases
+				'purchases' => $result,
+				'total'     => number_format($total, 2)
 			]);
 			
 		}

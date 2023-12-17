@@ -42,6 +42,13 @@
         <td>{{$purchase->amount}}</td>
     </tr>
         @endforeach
+    <tr>
+        <td style="border: 0px" colspan="3">&nbsp;</td>
+    </tr>
+    <tr style="font-weight: bolder">
+        <td colspan="2" style="text-align: right"> Total:</td>
+        <td>{{ $total}} </td>
+    </tr>
     </tbody>
 </table>
 
@@ -49,10 +56,10 @@
 </body>
 
 <script>
-    window.print();
-    window.onafterprint = function(event) {
-        window.location.href = '/purchase'
-    };
+    // window.print();
+    // window.onafterprint = function(event) {
+    //     window.location.href = '/purchase'
+    // };
 </script>
 
 </html>

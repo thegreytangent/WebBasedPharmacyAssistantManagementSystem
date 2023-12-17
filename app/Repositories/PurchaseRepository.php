@@ -2,15 +2,15 @@
 
     namespace App\Repositories;
 
+    use App\Models\Purchase as PurchaseDB;
+    use App\Models\PurchaseMedicine as PurchaseMedicineDB;
     use Domain\Modules\Purchase\Entities\Purchase;
     use Domain\Modules\Purchase\Entities\PurchaseMedicine;
     use Domain\Modules\Purchase\Repositories\IPurchaseRepository;
     use Illuminate\Contracts\Pagination\Paginator;
-    use Illuminate\Support\Facades\DB;
-    use App\Models\Purchase as PurchaseDB;
-    use App\Models\PurchaseMedicine as PurchaseMedicineDB;
     use Illuminate\Support\Collection;
-
+    use Illuminate\Support\Facades\DB;
+    
     class PurchaseRepository extends Repository implements IPurchaseRepository
     {
 
@@ -74,7 +74,7 @@
 
         public function GetAll(): Collection
         {
-            return PurchaseMedicineDB::with(['Purchase', 'Medicine'])->get();
+	        return PurchaseDB::with(['PurchaseMedicine'])->get();
         }
 
         public function GetAllMonthlySales(int $year): array
