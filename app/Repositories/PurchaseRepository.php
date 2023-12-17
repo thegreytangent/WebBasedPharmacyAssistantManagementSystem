@@ -54,7 +54,7 @@
 
         public function GetAllPaginate(int $page, int $limit): Paginator
         {
-            return PurchaseDB::with(['PurchaseMedicine'])->paginate($limit);
+	        return PurchaseDB::with(['PurchaseMedicine'])->orderBy('date', 'DESC')->paginate($limit);
         }
 
         public function GetAllPurchaseMedicineByPaginate(int $page, int $limit): Paginator
