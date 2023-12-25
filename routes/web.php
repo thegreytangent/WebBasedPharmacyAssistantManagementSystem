@@ -34,6 +34,7 @@
 		
 		Route::resource('/order', 'OrderController');
 		Route::resource('/purchase', 'PurchaseController');
+		Route::delete('/purchase-delete', 'PurchaseController@deleteAll');
 		Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
 		Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
 		Route::resource('/purchase-medicine', 'PurchaseMedicineController');

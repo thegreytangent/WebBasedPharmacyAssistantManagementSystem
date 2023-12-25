@@ -33,5 +33,7 @@
 		public function GetallCustomerPurchasesPaginate(
 			string $customer_id, int $currentPage
 		) : Paginator;
+		
+		public function deleteAll(): void;
 	   
     }

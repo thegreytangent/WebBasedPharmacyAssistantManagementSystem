@@ -49,4 +49,13 @@
             ]);
 
         }
+		
+		public function deleteAll()
+		{
+			$this->purchaseRepository->deleteAll();
+			
+			return response()->json([
+				'success' => true
+			]);
+		}
     }

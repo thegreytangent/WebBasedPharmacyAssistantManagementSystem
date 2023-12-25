@@ -8,7 +8,12 @@
                 <h6 class="mb-0 text-uppercase">Purchase Information</h6>
                 <hr/>
                 <a href="/purchase-pharmacy" class="btn btn-success btn-sm ms-auto mb-3">
-                    <i class="bx bx-add-to-queue"> </i>Add New Purchase</a>
+                    <i class="bx bx-add-to-queue"> </i>Add New Purchase
+                </a>
+
+                <button style="float: right" class="btn btn-danger btn-sm ms-auto mb-3 text-right button_delete_all">
+                    <i class="bx bx-trash"> </i>Delete All
+                </button>
                 <div class="card">
                     <div class="card-body">
 
@@ -82,6 +87,25 @@
                     return false;
                 }
             });
+
+            $(".button_delete_all").click(function () {
+                if (confirm("Are you sure you want to delete this?")) {
+                    let id = $(this).attr("id");
+                    $.ajax({
+                        url: `purchase-delete`,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (result) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            });
+
         });
     </script>
 @endpush

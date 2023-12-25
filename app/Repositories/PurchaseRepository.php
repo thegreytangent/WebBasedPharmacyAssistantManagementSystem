@@ -89,4 +89,9 @@
 		{
 			return PurchaseDB::where([ 'customer_id' => $customer_id])->paginate(5);
 		}
+		
+		public function deleteAll(): void
+		{
+			PurchaseDB::getQuery()->delete();
+		}
     }
