@@ -2,23 +2,46 @@ $(document).ready(function () {
     let medicines = [];
     let medicine_table = null;
     let purchases = {};
+    let inventories =
+
+        $.ajax({
+            url: `/api/purchase-pharmacy/inventories`,
+            type: 'GET',
+            contentType: "application/json",
+            dataType: 'JSON',
+            success: function (res) {
+                dropDownSelect(res.data)
+            }
+        });
 
 
-    $('.form-select').change(function () {
-        let id = $(this).find('option:selected').val();
-        let name = $(this).find('option:selected').text();
-        let price = $(this).find('option:selected').attr("price");
+    $('.select2').hide();
 
-        let data = {
-            medicine_id: id,
-            medicine_name: name,
-            price: price,
-            qty: 0
-        };
+    function dropDownSelect(inventory_data) {
 
-        medicines.push(data)
-        medicine_table = data;
-    });
+        $('.form-select').change(function () {
+            let id = $(this).find('option:selected').val();
+            let name = $(this).find('option:selected').text();
+            let price = $(this).find('option:selected').attr("price");
+
+
+           const inventory = inventory_data.find( i  => i.id == id);
+           const balance = !inventory ? 0 : inventory.balance;
+
+            $("#balance").val(balance);
+
+            let data = {
+                medicine_id: id,
+                medicine_name: name,
+                price: price,
+                qty: 0
+            };
+
+            medicines.push(data)
+            medicine_table = data;
+        });
+
+    }
 
 
     $('#purchase_form').submit(function (e) {
@@ -91,7 +114,6 @@ $(document).ready(function () {
     }
 
 
-
     function table_medicines_template(medicine_table, qty) {
         console.log(medicine_table);
         const price = Math.round((medicine_table.price) * 1e12) / 1e12;
@@ -115,11 +137,6 @@ $(document).ready(function () {
         }
 
     });
-
-
-
-
-
 
 
 });

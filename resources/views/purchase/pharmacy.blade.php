@@ -91,12 +91,19 @@
                             @include('template.alert')
                             <div class="col-lg-8">
 
-                                <div class="row text-center">
-                                    <div class="col col-8"> {!!  $medicines !!}</div>
+                                <div class="row text-right">
+
+                                    <div class="col col-6"> <label for="">Medicines:</label> {!!  $medicines !!}</div>
                                     <div class="col">
+                                        <label for="">Balance:</label>
+                                        <input readonly type="number" class="form-control" id="balance">
+                                    </div>
+                                    <div class="col">
+                                        <label for="">Purchase Qty:</label>
                                         <input type="number" class="form-control" id="qty" placeholder="Quantity">
                                     </div>
                                     <div class="col">
+                                        <label for="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <button id="add_to_table" type="button" class="btn btn-primary px-4">Add
                                         </button>
                                     </div>

@@ -26,6 +26,8 @@
     Route::get('/login', 'LoginController@index');
     Route::post('/login', 'LoginController@login');
 	
+	Route::get('/api/purchase-pharmacy/inventories', 'PurchasePharmacyController@getInventories');
+	
 	Route::group(['middleware' => 'auth'], function (){
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::resource('/supplier', 'SupplierController');
@@ -37,6 +39,7 @@
 		Route::delete('/purchase-delete', 'PurchaseController@deleteAll');
 		Route::get('/purchase-pharmacy', 'PurchasePharmacyController@index');
 		Route::post('/api/purchase-pharmacy', 'PurchasePharmacyController@store');
+		
 		Route::resource('/purchase-medicine', 'PurchaseMedicineController');
 		Route::get('/inventory', 'InventoryController@index');
 		Route::get('/logout', 'AuthController@logout');
