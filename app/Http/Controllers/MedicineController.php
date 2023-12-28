@@ -38,7 +38,10 @@
 				
 				$module_title = $supplier->name . " Medicine Information";
 				$medicine_pagination = $this->medicineRepository->GetAllBySupplierPaginate($supplier_id, 5);
-			} else {
+			} else if (request()->get('id')) {
+				$module_title = " Medicine Information Expirations";
+				$medicine_pagination = $this->medicineRepository->GetAllBySupplierPaginate($supplier_id, 5);
+			}else {
 				$module_title = "MEDICINE'S INFORMATION";
 				$medicine_pagination = $this->medicineRepository->GetAllPaginate(1, 5);
 			}

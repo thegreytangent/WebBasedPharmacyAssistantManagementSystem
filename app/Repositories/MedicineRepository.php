@@ -90,4 +90,10 @@
 			    'supplier_id' => $supplier_id
 		    ])->paginate(3);
 	    }
+		
+		
+		public function GetAllMedicineOrder(string $medicine_id, int $limit) : Paginator
+		{
+		
+		}
     }

@@ -26,4 +26,6 @@
         public function GetInventoryBalance() : Paginator;
 	    
 	    public function GetAllBySupplierPaginate(string $supplier_id, int $limit): Paginator;
+		
+		public function GetAllMedicineOrder(string $medicine_id, int $limit): Paginator;
 	}

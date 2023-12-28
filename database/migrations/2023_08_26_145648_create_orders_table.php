@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('supplier_id')->index();
             $table->uuid('medicine_id')->index();
             $table->integer('qty');
+	        $table->date('date_expired');
 
 
             $table->timestamps();

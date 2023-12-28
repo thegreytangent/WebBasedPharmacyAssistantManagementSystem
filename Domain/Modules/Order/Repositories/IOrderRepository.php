@@ -14,6 +14,8 @@
         public function Delete(string $order_id) : void;
 
         public function GetAllPaginate(int $page, int $limit) : Paginator ;
+	    
+	    public function GetAllMedicinePaginate(string $medicine_id, int $page, int $limit) : Paginator ;
 
         public function Find(string $id) : Order | null;
 

@@ -20,7 +20,8 @@
                             <tr>
                                 <th scope="col">Supplier Name</th>
                                 <th scope="col">Medicine</th>
-                                <th scope="col">Over All Qty</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Expiration Date</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -30,9 +31,8 @@
                             <tr>
                                 <td>{{$order->supplier_name}}</td>
                                 <td>{{$order->medicine_name}}</td>
-
                                 <td>{{$order->qty}}</td>
-
+                                <td>{{$order->expiration_date}}</td>
                                 <td>
                                     <a href="/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
                                             <i class="bx bxs-book-open"></i> View Records
@@ -40,11 +40,7 @@
                                 </td>
                             </tr>
                             @endforeach
-
-
                             </tbody>
-
-
                         </table>
                         <div class="row mt-3">
                             {!! $pagination !!}

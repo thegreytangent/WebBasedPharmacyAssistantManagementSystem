@@ -17,35 +17,35 @@
             Medicine::create([
                 'category_id'   => Category::first()->id,
                 'supplier_id'   => Supplier::first()->id,
-                'price'         => fake()->numberBetween(1, 3),
+                'price'         =>  1.50,
                 'medicine_name' => "Aspirin",
             ]);
 
             Medicine::create([
                 'category_id'   => Category::first()->id,
                 'supplier_id'   => Supplier::first()->id,
-                'price'         => fake()->numberBetween(1, 3),
+                'price'         => 3,
                 'medicine_name' => "Gilenya",
             ]);
 
             Medicine::create([
                 'category_id'   => Category::first()->id,
                 'supplier_id'   => Supplier::first()->id,
-                'price'         => fake()->numberBetween(1, 3),
+                'price'         => 17,
                 'medicine_name' => "Kevzara",
             ]);
 
             Medicine::create([
                 'category_id'   => Category::first()->id,
                 'supplier_id'   => Supplier::first()->id,
-                'price'         => fake()->numberBetween(1, 3),
+                'price'         => 8.74,
                 'medicine_name' => "Metformin",
             ]);
 
             Medicine::create([
                 'category_id'   => Category::first()->id,
                 'supplier_id'   => Supplier::first()->id,
-                'price'         => fake()->numberBetween(1, 3),
+                'price'         => 96,
                 'medicine_name' => "Cymbalta",
             ]);
 
