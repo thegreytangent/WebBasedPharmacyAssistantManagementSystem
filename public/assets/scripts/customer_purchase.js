@@ -2,7 +2,7 @@ $(document).ready(function () {
     let medicines = [];
     let medicine_table = null;
     let purchases = {};
-    let inventories =
+
 
         $.ajax({
             url: `/api/purchase-pharmacy/inventories`,
@@ -106,10 +106,14 @@ $(document).ready(function () {
 
 
     function computeTotal(obj, qty) {
+
         let total = 0;
-        medicines.map((obj) => {
-            total += obj.price * qty;
-        });
+        for(let x = 0; x < medicines.length; x++ ) {
+            let price = Number(medicines[x].price);
+            let _qty = Number(medicines[x].qty);
+            total += price * _qty;
+        }
+
         return total;
     }
 
