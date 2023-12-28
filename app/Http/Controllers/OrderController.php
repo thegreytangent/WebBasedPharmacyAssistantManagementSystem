@@ -28,8 +28,6 @@
 		
 		public function index()
 		{
-			
-			
 			if (request()->input('medicine_id')) {
 				$orders_data = $this->orderController->GetAllMedicinePaginate(
 					request()->input('medicine_id'),

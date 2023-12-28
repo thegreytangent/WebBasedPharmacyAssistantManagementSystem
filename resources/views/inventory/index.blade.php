@@ -18,7 +18,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">Medicine</th>
-                                <th scope="col">Supplier Orders (IN)</th>
+                                <th scope="col">Purchases (IN)</th>
                                 <th scope="col">Purchases (OUT)</th>
                                 <th scope="col">Balance</th>
                                 <th scope="col"></th>
