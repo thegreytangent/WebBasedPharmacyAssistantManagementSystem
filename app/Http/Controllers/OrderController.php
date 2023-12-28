@@ -47,7 +47,9 @@
 					'medicine_name'   => $o->Medicine->medicine_name,
 					'supplier_name'   => $o->Supplier->name,
 					'qty'             => $o->total_qty,
-					'expiration_date' => Carbon::parse($o->date_expired)->format('M. d Y')
+					'expiration_date' => Carbon::parse($o->date_expired)->format('M. d Y'),
+					'label' => $o->label(),
+					'label_message' => $o->label_message()
 				];
 			});
 			

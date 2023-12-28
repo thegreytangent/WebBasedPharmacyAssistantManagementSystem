@@ -1,4 +1,3 @@
-
 @extends('template.main')
 
 
@@ -23,21 +22,22 @@
                                 <th scope="col">Balance</th>
                                 <th scope="col"></th>
 
+
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach($inventories as $inventory)
-                            <tr>
-                                <td>{{$inventory->medicine_name}}</td>
-                                <td>{{$inventory->in}}</td>
-                                <td>{{$inventory->out}}</td>
-                                <td>{{$inventory->balance}}</td>
-                                <td><a href="/order?medicine_id={{$inventory->id}}" class="btn btn-sm btn-info">Show Expiration</a></td>
-                            </tr>
+                                <tr>
+                                    <td>{{$inventory->medicine_name}}</td>
+                                    <td>{{$inventory->in}}</td>
+                                    <td>{{$inventory->out}}</td>
+                                    <td>{{$inventory->balance}}</td>
+                                    <td><a href="/order?medicine_id={{$inventory->id}}" class="btn btn-sm btn-info">Show
+                                            Expiration</a></td>
+
+                                </tr>
                             @endforeach
-
-
                             </tbody>
 
 
@@ -51,7 +51,6 @@
         </div>
 
     </div>
-
 
 @endsection
 

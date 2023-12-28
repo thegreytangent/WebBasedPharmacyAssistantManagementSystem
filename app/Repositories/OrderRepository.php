@@ -5,6 +5,7 @@
 	use Domain\Modules\Order\Entities\Order;
 	use Domain\Modules\Order\Repositories\IOrderRepository;
 	use Illuminate\Contracts\Pagination\Paginator;
+	use Illuminate\Support\Carbon;
 	use Illuminate\Support\Facades\DB;
 	use App\Models\Order as OrderDB;
 	
@@ -25,6 +26,8 @@
 				'updated_at'   => now(),
 			]);
 		}
+		
+	
 		
 		public function Update(Order $order): void
 		{
