@@ -31,7 +31,7 @@ class Order extends Model
 		$date = Carbon::parse($this->date_expired);
 		$now = Carbon::now();
 		
-		if ($now < $date) {
+		if ($now > $date) {
 			return 'bg-primary';
 		}
 		return 'bg-success';
@@ -42,7 +42,7 @@ class Order extends Model
 		$now = Carbon::now();
 		$date = Carbon::parse($this->date_expired);
 		
-		if ($now < $date) {
+		if ($now > $date) {
 			return 'Expired';
 		}
 		return 'Not Expired';
