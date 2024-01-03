@@ -157,7 +157,6 @@
 				'category'      => 'required',
 				'medicine_name' => 'required',
 				'price'         => 'required|numeric',
-				'qty'           => 'required|int'
 			]);
 			
 			if ($val->fails()) {
@@ -169,7 +168,7 @@
 				new Price($req->input('price'))
 			);
 			
-			$medicine->setQuantity($req->input('qty'));
+			$medicine->setQuantity(0);
 			
 			$this->medicineRepository->Save(
 				$medicine,
