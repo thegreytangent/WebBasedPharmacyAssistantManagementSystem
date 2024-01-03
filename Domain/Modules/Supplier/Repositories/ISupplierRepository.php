@@ -20,4 +20,6 @@
         public function All(): array;
 
         public function CountNumberOfSuppliers() : int;
+		
+		public function GetAllMedicines(string $supplier_id) : array;
 	}

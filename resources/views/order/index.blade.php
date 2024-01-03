@@ -37,7 +37,7 @@
                                 <td> <span class="badge {{$order->label}}">{{$order->label_message}}</span> </td>
                                 <td>
                                     <a href="/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
-                                            <i class="bx bxs-book-open"></i> View Records
+                                            <i class="bx bxs-book-open"></i> Show Medicine from Supplier
                                         </a>
                                 </td>
 

@@ -56,4 +56,9 @@
         {
             return DB::table('suppliers')->count();
         }
+		
+		public function GetAllMedicines(string $supplier_id) : array
+		{
+			return DB::table('medicines')->where(['supplier_id' => $supplier_id])->get()->toArray();
+		}
     }

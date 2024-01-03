@@ -36,11 +36,13 @@
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Supplier:</label>
-                                                {!! Form::select('supplier', $suppliers, null, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
+                                                {!! Form::select('supplier', $suppliers, null, ['id' => 'supplier', 'class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Medicine Name:</label>
-                                                {!! Form::select('medicine', $medicines, null, ['class' => 'form-control', 'placeholder' => '-- Select Category --']); !!}
+                                                <select name="medicine" id="medicine" class="form-control"  placeholder="Select Medicine" >
+
+                                                </select>
                                             </div>
 
                                             <div class="col-12">
@@ -72,3 +74,38 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+
+            $("#supplier").click(function () {
+                    let supplier_id = $(this).val()
+                    $.ajax({
+                        url: `/supplier/medicines/${supplier_id}`,
+                        type: 'GET',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (result) {
+                            const data = result.data;
+
+                            $('#medicine').empty();
+                            if (data.length <= 0 ) {
+                                $('#medicine').append(`<option value="">No Medicine</option>`);
+                            } else {
+                                data.map( (d) => {
+                                    $('#medicine').append(`<option value="${d.id}">${d.medicine_name}</option>`);
+                                })
+                            }
+
+
+                            // location.reload();
+                        }
+                    });
+
+            });
+        });
+    </script>
+@endpush
+

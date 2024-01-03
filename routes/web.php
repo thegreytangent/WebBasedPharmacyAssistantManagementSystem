@@ -31,6 +31,7 @@
 	Route::group(['middleware' => 'auth'], function (){
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::resource('/supplier', 'SupplierController');
+		Route::get('/supplier/medicines/{supplier_id}', 'SupplierController@getMedicines');
 		Route::resource('/category', 'CategoryController');
 		Route::resource('/medicine', 'MedicineController');
 		
