@@ -38,10 +38,7 @@
                                             <label for="inputProductTags" class="form-label">Medicine Price:</label>
                                             {!! Form::text('price',null, ['class' => 'form-control', 'placeholder' => 'Enter Price']); !!}
                                         </div>
-                                        <div class="col-12">
-                                            <label for="inputProductTags" class="form-label">Initial Quantity:</label>
-                                            {!! Form::text('qty',null, ['class' => 'form-control', 'placeholder' => 'Enter Qty']); !!}
-                                        </div>
+
                                         <div class="col-12">
                                             <div class="d-grid">
                                                 {!! Form::submit('Save', ['class' => 'btn btn-success']); !!}
