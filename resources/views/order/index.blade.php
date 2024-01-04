@@ -23,7 +23,7 @@
                                 <th scope="col">Qty</th>
                                 <th scope="col">Expiration Date</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <!-- <th scope="col">Action</th> -->
                             </tr>
                             </thead>
                             <tbody>
@@ -35,11 +35,11 @@
                                 <td>{{$order->qty}}</td>
                                 <td>{{$order->expiration_date}}</td>
                                 <td> <span class="badge {{$order->label}}">{{$order->label_message}}</span> </td>
-                                <td>
+                                <!-- <td>
                                     <a href="/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
                                             <i class="bx bxs-book-open"></i> Show Medicine from Supplier
                                         </a>
-                                </td>
+                                </td> -->
 
                             </tr>
                             @endforeach
