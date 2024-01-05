@@ -31,14 +31,13 @@
 			if (request()->input('medicine_id')) {
 				$orders_data = $this->orderController->GetAllMedicinePaginate(
 					request()->input('medicine_id'),
-					request()->input('page') ?? 1, 3);
+					request()->input('page') ?? 1, 5);
 			} else {
-				$orders_data = $this->orderController->GetAllPaginate(request()->input('page') ?? 1, 3);
+				$orders_data = $this->orderController->GetAllPaginate(request()->input('page') ?? 1, 10);
 			}
 			
 			
 			$orders = collect($orders_data->items())->map(function ($o) {
-				
 				return (object)[
 					'id'              => $o->id,
 					'name'            => $o->name,
@@ -46,10 +45,10 @@
 					'medicine_id'     => $o->medicine_id,
 					'medicine_name'   => $o->Medicine->medicine_name,
 					'supplier_name'   => $o->Supplier->name,
-					'qty'             => $o->total_qty,
+					'qty'             => $o->qty,
 					'expiration_date' => Carbon::parse($o->date_expired)->format('M. d Y'),
-					'label' => $o->label(),
-					'label_message' => $o->label_message()
+					'label'           => $o->label(),
+					'label_message'   => $o->label_message()
 				];
 			});
 			

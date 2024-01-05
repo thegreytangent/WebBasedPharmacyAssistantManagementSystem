@@ -42,8 +42,6 @@
 		public function GetAllPaginate(int $page, int $limit): Paginator
 		{
 			return OrderDB::with(['Supplier', 'Medicine'])
-				->groupBy('supplier_id')
-				->selectRaw('*,sum(qty) as total_qty')
 				->paginate($limit);
 		}
 		
