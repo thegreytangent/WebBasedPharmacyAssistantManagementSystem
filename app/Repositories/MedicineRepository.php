@@ -94,7 +94,7 @@
 		public function GetAllBalance(): array
 		{
 			$sql = "SELECT SUM(o.qty) - SUM(pm.qty) as balance, o.medicine_id as id FROM orders o ";
-			$sql .= "LEFT JOIN pharmacy.purchase_medicines pm on o.medicine_id = pm.medicine_id ";
+			$sql .= "LEFT JOIN purchase_medicines pm on o.medicine_id = pm.medicine_id ";
 			$sql .= "GROUP BY o.medicine_id" ;
 			return $this->query($sql);
 		}
