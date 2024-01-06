@@ -2,6 +2,9 @@
 	
 	namespace App\Http\Controllers;
 	
+	use App\Models\Medicine;
+	use App\Models\Order;
+	use App\Models\Supplier;
 	use Domain\Modules\Customer\Entities\Customer;
 	use Domain\Modules\Customer\Repositories\ICustomerRepository;
 	use Domain\Modules\Medicine\Repositories\IMedicineRepository;
@@ -122,20 +125,20 @@
 			
 		}
 		
-		public function getInventories() : JsonResponse
+		public function getInventories(): JsonResponse
 		{
+			$result = $this->medicineRepository->GetAllBalance();
 			
-			$medicines = $this->medicineRepository->GetInventoryBalance();
-			$inventories = collect($medicines->items())->map(function ($m) {
+			$inventories = collect($result)->map(function ($m) {
 				return [
 					'id'      => $m->id,
-					'balance' => $m->inventoryBalance()
+					'balance' => (float)$m->balance ?? 0
 				];
 			});
 			
 			return response()->json([
 				'success' => true,
-				'data' => $inventories
+				'data'    => $inventories
 			]);
 			
 		}
