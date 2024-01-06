@@ -93,11 +93,23 @@
 		
 		public function GetAllBalance(): array
 		{
-			$sql = "SELECT SUM(o.qty) - SUM(pm.qty) as balance, o.medicine_id as id FROM orders o ";
+			$sql = "SELECT SUM(o.qty) - (CASE WHEN  SUM(pm.qty) IS NULL THEN 0 ELSE SUM(pm.qty) END) as balance, o.medicine_id as id FROM orders o ";
 			$sql .= "LEFT JOIN purchase_medicines pm on o.medicine_id = pm.medicine_id ";
 			$sql .= "GROUP BY o.medicine_id" ;
 			return $this->query($sql);
 		}
+
+        public function getAllOrderWithQtyGroupByMedicine() {
+           $sql = "SELECT SUM(qty) as qty, medicine_id FROM orders GROUP BY medicine_id";
+           return $this->query($sql);
+        }
+
+        public function findByMedicineTotalPurchases($med_id) {
+             $sql = "SELECT (CASE WHEN  SUM(qty) IS NULL THEN 0 ELSE SUM(qty) END) as qty, medicine_id FROM purchase_medicines WHERE medicine_id = '".$med_id."'";
+           $result =  $this->query($sql);
+           return $result ? array_shift($result) : null;
+           
+        }
 		
 		public function GetAllMedicineOrder(string $medicine_id, int $limit): Paginator
 		{
