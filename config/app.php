@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-
+    'folder' => env('APP_FOLDER', 'pharmacy'),
     /*
     |--------------------------------------------------------------------------
     | Application Name
