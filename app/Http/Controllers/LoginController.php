@@ -34,6 +34,7 @@
 		public function login(Request $request)
 		{
 			try {
+				
 				$validate = Validator::make($request->all(), [
 					'username' => 'required',
 					'password' => 'required'
@@ -70,6 +71,7 @@
 				
 				
 			} catch (Exception $exception) {
+					
 				return redirectWithAlert('login', [
 					'alert-danger' => $exception->getMessage()
 				]);

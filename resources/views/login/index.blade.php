@@ -11,7 +11,7 @@
     {{--    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />--}}
     <!--plugins-->
     <link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet"/>
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>
+    <link href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet"/>
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
     <!-- loader-->
     <link href="assets/css/pace.min.css" rel="stylesheet"/>
@@ -20,8 +20,8 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link href="assets/css/app.css" rel="stylesheet">
-    <link href="assets/css/icons.css" rel="stylesheet">
+    <link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
     <title>{{config('app.name')}}</title>
 </head>
 
@@ -52,7 +52,7 @@
                                 </div>
                                 @include('template.alert')
                                 <div class="form-body">
-                                    <form class="row g-3" method="POST" action="/login">
+                                    <form class="row g-3" method="POST" action="login">
                                         <div class="col-12">
                                             <label for="inputEmailAddress" class="form-label">Username:</label>
                                             <input type="text" name="username" class="form-control" />
@@ -83,7 +83,7 @@
         </div>
     </div>
     <footer class="bg-white shadow-none border-top p-2 text-center fixed-bottom">
-        <p class="mb-0">Copyright © 2022. All right reserved.</p>
+        <p class="mb-0">Copyright © 2023. All right reserved.</p>
     </footer>
 </div>
 <!--end wrapper-->
@@ -112,7 +112,7 @@
     });
 </script>
 <!--app JS-->
-<script src="assets/js/app.js"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
 </body>
 
 

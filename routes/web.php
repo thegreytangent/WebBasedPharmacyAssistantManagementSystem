@@ -14,7 +14,7 @@
     */
 
 
-	Route::group(['prefix' => 'pharmacy'], function () {
+	// Route::group(['prefix' => 'pharmacy'], function () {
 
 
 		Route::get('/', function () {
@@ -54,8 +54,8 @@
 	
 		Route::resource('/customer', 'CustomerController');
 
-		
-	});
+
+	// });
     
  
 	

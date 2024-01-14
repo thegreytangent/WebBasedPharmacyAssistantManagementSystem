@@ -11,6 +11,6 @@
     {
         public function logout() : RedirectResponse {
             Auth::logout();
-            return redirect('/login');
+            return redirect('login');
         }
     }

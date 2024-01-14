@@ -5,7 +5,7 @@
     <div class="page-content">
         <div class="row mb-3">
             <div class="col-lg-3">
-                <a href="/purchase" class="btn btn-primary"><i class="bx bxs-left-arrow"></i>Back</a>
+                <a href="purchase" class="btn btn-primary"><i class="bx bxs-left-arrow"></i>Back</a>
             </div>
 
         </div>
@@ -45,7 +45,7 @@
                                     <td>{{$pm->price}}</td>
 {{--                                    <td>--}}
 {{--                                        <div class="d-flex order-actions">--}}
-{{--                                            <a href="/supplier/{{$pm->id}}" class="btn btn-info"><i--}}
+{{--                                            <a href="supplier/{{$pm->id}}" class="btn btn-info"><i--}}
 {{--                                                    class="bx bxs-edit"></i></a>--}}
 {{--                                            <a href="#" id="{{$pm->id}}" class="btn btn-danger ms-3 button_delete"><i--}}
 {{--                                                    class="bx bxs-trash"></i></a>--}}

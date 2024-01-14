@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">Purchase Information</h6>
                 <hr/>
-                <a href="/purchase-pharmacy" class="btn btn-success btn-sm ms-auto mb-3">
+                <a href="purchase-pharmacy" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add New Purchase
                 </a>
 
@@ -37,7 +37,7 @@
                                     <td> {{$purchase->amount }}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="/purchase-medicine?purchase_id={{$purchase->id}}"
+                                            <a href="purchase-medicine?purchase_id={{$purchase->id}}"
                                                class="btn btn-success"><i
                                                         class="bx bxs-show"></i></a>
                                             <a href="#" id="{{$purchase->id}}"

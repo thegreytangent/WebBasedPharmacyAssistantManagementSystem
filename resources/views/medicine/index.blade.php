@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">{{$module_title}}</h6>
                 <hr/>
-                <a href="/medicine/create" class="btn btn-success btn-sm ms-auto mb-3">
+                <a href="medicine/create" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add New Medicine</a>
                 <div class="card">
                     <div class="card-body">
@@ -35,7 +35,7 @@
                                 <td>{{$medicine->price}}</td>
                                 <td>
                                     <div class="d-flex order-actions">
-                                        <a href="/medicine/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                        <a href="medicine/{{$medicine->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
                                         <a href="#" id="{{$medicine->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
                                     </div> </td>
                             </tr>
