@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: `/api/purchase-pharmacy/inventories`,
+            url: `{{config('app.url')}}/api/purchase-pharmacy/inventories`,
             type: 'GET',
             contentType: "application/json",
             dataType: 'JSON',
@@ -70,7 +70,7 @@ $(document).ready(function () {
         if (confirm("The record will be save. Are you sure to submit?")) {
 
             $.ajax({
-                url: `/api/purchase-pharmacy`,
+                url: `{{config('app.url')}}/api/purchase-pharmacy`,
                 type: 'POST',
                 contentType: "application/json",
                 dataType: 'JSON',

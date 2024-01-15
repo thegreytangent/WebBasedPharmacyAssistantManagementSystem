@@ -74,7 +74,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `purchase/${id}`,
+                        url: `{{config('app.url')}}/purchase/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
@@ -92,7 +92,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `purchase-delete`,
+                        url: `{{config('app.url')}}/purchase-delete`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

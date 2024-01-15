@@ -68,7 +68,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `category/${id}`,
+                        url: `{{config('app.url')}}/category/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
