@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">Suppliers Information</h6>
                 <hr/>
-                <a href="/supplier/create" class="btn btn-success btn-sm ms-auto mb-3">
+                <a href="{{config('app.url')}}/supplier/create" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add New Supplier</a>
                 <div class="card">
                     <div class="card-body">
@@ -30,7 +30,7 @@
                                 <td>{{$supplier->contact_number}}</td>
                                 <td>
                                     <div class="d-flex order-actions">
-                                        <a href="/supplier/{{$supplier->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                        <a href="{{config('app.url')}}/supplier/{{$supplier->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
                                         <a href="#" id="{{$supplier->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
                                     </div> </td>
                             </tr>

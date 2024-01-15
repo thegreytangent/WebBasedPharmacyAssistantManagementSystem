@@ -5,7 +5,7 @@
         <!--breadcrumb-->
         <h6 class="mb-0 text-uppercase">&nbsp;</h6>
         {{--    <div class="d-flex order-actions">--}}
-        <a href="/order" class="btn btn-secondary"><i class="bx bxs-left-arrow-circle"></i>Back</a>
+        <a href="{{config('app.url')}}/order" class="btn btn-secondary"><i class="bx bxs-left-arrow-circle"></i>Back</a>
         {{--    </div>--}}
         <hr/>
 
