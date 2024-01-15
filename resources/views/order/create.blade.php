@@ -82,7 +82,7 @@
             $("#supplier").click(function () {
                     let supplier_id = $(this).val()
                     $.ajax({
-                        url: `/supplier/medicines/${supplier_id}`,
+                        url: '{{config('app.url')}}/supplier/medicines/'+supplier_id,
                         type: 'GET',
                         data: {
                             "_token": "{{ csrf_token() }}",
