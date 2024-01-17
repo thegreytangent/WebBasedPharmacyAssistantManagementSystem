@@ -30,10 +30,28 @@
                                             <label for="inputProductTags" class="form-label">Category:</label>
                                             {!! Form::select('category', $categories, null, ['class' => 'form-control', 'placeholder' => '-- Select Category --']); !!}
                                         </div>
+
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Medicine Name:</label>
                                             {!! Form::text('medicine_name',null, ['class' => 'form-control', 'placeholder' => 'Enter Medicine Name']); !!}
                                         </div>
+
+
+                                        <div class="col-12">
+                                            <label for="inputProductTags" class="form-label">Type:</label>
+                                            {!! Form::select('type', $medicine_types, null, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="inputProductTags" class="form-label">Unit Of Measurement:</label>
+                                            {!! Form::select('unit_of_measurement', $unit_of_measurement, null, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
+                                        </div>
+
+
+
+
+
+
                                         <div class="col-12">
                                             <label for="inputProductTags" class="form-label">Medicine Price:</label>
                                             {!! Form::text('price',null, ['class' => 'form-control', 'placeholder' => 'Enter Price']); !!}

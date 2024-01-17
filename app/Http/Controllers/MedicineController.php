@@ -41,7 +41,7 @@
 			} else if (request()->get('id')) {
 				$module_title = " Medicine Information Expirations";
 				$medicine_pagination = $this->medicineRepository->GetAllBySupplierPaginate($supplier_id, 5);
-			}else {
+			} else {
 				$module_title = "MEDICINE'S INFORMATION";
 				$medicine_pagination = $this->medicineRepository->GetAllPaginate(1, 5);
 			}
@@ -64,7 +64,7 @@
 			return view('medicine.index')->with([
 				'medicines'    => $medicines,
 				'pagination'   => $medicine_pagination->links(),
-				'module_title' => $module_title
+				'module_title' => $module_title,
 			]);
 		}
 		
@@ -120,11 +120,13 @@
 			
 			
 			return view('medicine.edit')->with([
-				'medicine'    => $medicine,
-				'supplier_id' => $medicine->Supplier->id,
-				'category_id' => $medicine->Category->id,
-				'suppliers'   => $suppliers,
-				'categories'  => $categories
+				'medicine'            => $medicine,
+				'supplier_id'         => $medicine->Supplier->id,
+				'category_id'         => $medicine->Category->id,
+				'suppliers'           => $suppliers,
+				'categories'          => $categories,
+				'medicine_types'      => selectMedicineType(),
+				'unit_of_measurement' => selectUnitOfMeasurement()
 			]);
 			
 		}
@@ -145,18 +147,22 @@
 			
 			
 			return view('medicine.create')->with([
-				'suppliers'  => $suppliers,
-				'categories' => $categories
+				'suppliers'           => $suppliers,
+				'categories'          => $categories,
+				'medicine_types'      => selectMedicineType(),
+				'unit_of_measurement' => selectUnitOfMeasurement()
 			]);
 		}
 		
 		public function store(Request $req)
 		{
 			$val = Validator::make($req->all(), [
-				'supplier'      => 'required',
-				'category'      => 'required',
-				'medicine_name' => 'required',
-				'price'         => 'required|numeric',
+				'supplier'            => 'required',
+				'category'            => 'required',
+				'medicine_name'       => 'required',
+				'price'               => 'required|numeric',
+				'type'                => 'required',
+				'unit_of_measurement' => 'required'
 			]);
 			
 			if ($val->fails()) {
@@ -169,6 +175,9 @@
 			);
 			
 			$medicine->setQuantity(0);
+			
+			$medicine->setType($req->input('type'));
+			$medicine->setUnitOfMeasurement($req->input('unit_of_measurement'));
 			
 			$this->medicineRepository->Save(
 				$medicine,
