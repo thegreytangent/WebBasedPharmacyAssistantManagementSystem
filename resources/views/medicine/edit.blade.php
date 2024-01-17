@@ -35,6 +35,14 @@
                                                 {!! Form::text('medicine_name',$medicine->medicine_name, ['class' => 'form-control', 'placeholder' => 'Enter Medicine Name']); !!}
                                             </div>
                                             <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Type:</label>
+                                                {!! Form::select('type', $medicine_types, $medicine->type, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputProductTags" class="form-label">Unit Of Measurement:</label>
+                                                {!! Form::select('unit_of_measurement', $unit_of_measurement, $medicine->uom, ['class' => 'form-control', 'placeholder' => '-- Select Supplier --']); !!}
+                                            </div>
+                                            <div class="col-12">
                                                 <label for="inputProductTags" class="form-label">Medicine Price:</label>
                                                 {!! Form::text('price',$medicine->price, ['class' => 'form-control', 'placeholder' => 'Enter Price']); !!}
                                             </div>

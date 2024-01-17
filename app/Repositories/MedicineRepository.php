@@ -55,7 +55,7 @@
 		public function GetAllPaginate(int $page, int $limit): Paginator
 		{
 			
-			return MedicineDB::with(['Category', 'Supplier'])->paginate(3);
+			return MedicineDB::with(['Category', 'Supplier'])->paginate(10);
 			
 		}
 		
@@ -83,14 +83,14 @@
 		
 		public function GetInventoryBalance(): Paginator
 		{
-			return MedicineDB::with(['PurchaseMedicines', 'Orders'])->paginate(3);
+			return MedicineDB::with(['PurchaseMedicines', 'Orders'])->paginate(10);
 		}
 		
 		public function GetAllBySupplierPaginate(string $supplier_id, int $limit): Paginator
 		{
 			return MedicineDB::with(['Category', 'Supplier'])->where([
 				'supplier_id' => $supplier_id
-			])->paginate(3);
+			])->paginate(10);
 		}
 		
 		public function GetAllBalance(): array
