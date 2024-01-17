@@ -95,7 +95,7 @@
                                 $('#medicine').append(`<option value="">No Medicine</option>`);
                             } else {
                                 data.map( (d) => {
-                                    $('#medicine').append(`<option value="${d.id}">${d.medicine_name}</option>`);
+                                    $('#medicine').append(`<option value="${d.id}">${d.medicine_name} (${d.type}) - ${d.uom}</option>`);
                                 })
                             }
 

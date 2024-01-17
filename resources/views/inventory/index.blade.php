@@ -17,8 +17,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">Medicine</th>
-                                <th scope="col">Purchases (IN)</th>
-                                <th scope="col">Purchases (OUT)</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">UOM</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Balance</th>
                                 <th scope="col"></th>
 
@@ -30,8 +31,9 @@
                             @foreach($inventories as $inventory)
                                 <tr>
                                     <td>{{$inventory->medicine_name}}</td>
+                                    <td>{{$inventory->type}}</td>
+                                    <td>{{$inventory->uom}}</td>
                                     <td>{{$inventory->in}}</td>
-                                    <td>{{$inventory->out}}</td>
                                     <td>{{$inventory->balance}}</td>
                                     <td><a href="{{config('app.url')}}/order?medicine_id={{$inventory->id}}" class="btn btn-sm btn-info">Show
                                             Expiration</a></td>
