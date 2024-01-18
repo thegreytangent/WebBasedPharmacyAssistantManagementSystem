@@ -11,6 +11,10 @@
                 <div class="card">
                     <div class="card-body">
 
+                        <a href="{{config('app.url')}}/inventory-print" class="btn btn-warning" style="float: right">
+                           <i class="d-print-block"></i> Print
+                        </a>
+
                         @include('template.alert')
 
                         <table class="table mb-0 table-hover text-center">
