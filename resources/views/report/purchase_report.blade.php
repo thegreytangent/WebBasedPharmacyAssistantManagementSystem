@@ -55,11 +55,11 @@
 
 </body>
 
-<script>
-    window.print();
-    window.onafterprint = function (event) {
-        window.location.href = "{{config('app.url')}}/purchase"
-    };
-</script>
+{{--<script>--}}
+{{--    window.print();--}}
+{{--    window.onafterprint = function (event) {--}}
+{{--        window.location.href = "{{config('app.url')}}/purchase"--}}
+{{--    };--}}
+{{--</script>--}}
 
 </html>
