@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worker Report</title>
+    <title>Sales Report</title>
     <style>
         th, td {
             border:  1px solid black;
@@ -23,7 +23,7 @@
 
 <body>
 <h3 class="center">Digital Pharmacy Assistant Management System</h3>
-<h4 class="center">Purchases Information</h4>
+<h4 class="center">SALES REPORT</h4>
 <table style="text-align: center">
     <thead>
     <b>
