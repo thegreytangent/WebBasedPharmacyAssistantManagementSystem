@@ -125,14 +125,23 @@
 			
 		}
 		
-		public function getInventories(): JsonResponse
+		public function getInventories()
 		{
-			$result = $this->medicineRepository->GetAllBalance();
+			 $result = $this->medicineRepository->getAllOrderWithQtyGroupByMedicine();
 			
 			$inventories = collect($result)->map(function ($m) {
+				 $purchase = $this->medicineRepository->findByMedicineTotalPurchases($m->medicine_id);
+				
+
+					$purchase_qty =  $purchase ? $purchase->qty : 0;
+					$bal = $m->qty - $purchase_qty;
+
+
 				return [
-					'id'      => $m->id,
-					'balance' => (float)$m->balance ?? 0
+					'id'      => $m->medicine_id,
+					'order_qty' => $m->qty,
+					'pur_qty' => $purchase_qty,
+					'balance' => (int)$bal ?? 0
 				];
 			});
 			

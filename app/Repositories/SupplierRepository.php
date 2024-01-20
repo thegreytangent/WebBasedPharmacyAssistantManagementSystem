@@ -2,6 +2,7 @@
 
     namespace App\Repositories;
 
+    use App\Models\Medicine;
     use Domain\Modules\Supplier\Entities\Supplier;
     use Domain\Modules\Supplier\Repositories\ISupplierRepository;
     use App\Models\Supplier as SupplierDB;
@@ -59,6 +60,13 @@
 		
 		public function GetAllMedicines(string $supplier_id) : array
 		{
-			return DB::table('medicines')->where(['supplier_id' => $supplier_id])->get()->toArray();
+			$result = [];
+			
+			foreach (Medicine::where(['supplier_id' => $supplier_id])->get() as $m) {
+				$m->type = ucfirst($m->getType());
+				$m->uom = ucfirst($m->getUom());
+				$result[] = $m;
+			}
+			return $result;
 		}
     }

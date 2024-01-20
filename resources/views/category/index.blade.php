@@ -12,7 +12,7 @@
 
 
 {{--                <div class="col-md-6">--}}
-                    <a href="/category/create" class="btn btn-success btn-sm ms-auto mb-3">
+                    <a href="{{config('app.url')}}/category/create" class="btn btn-success btn-sm ms-auto mb-3">
                         <i class="bx bx-add-to-queue"> </i>Add New Category</a>
 
                     <div class="card col-md-6" style="margin-left: 28%">
@@ -34,7 +34,7 @@
 
                                         <td>
                                             <div class="d-flex order-actions">
-                                                <a href="/category/{{$category->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
+                                                <a href="{{config('app.url')}}/category/{{$category->id}}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
                                                 <a href="#" id="{{$category->id}}" class="btn btn-danger ms-3 button_delete"><i class="bx bxs-trash"></i></a>
                                             </div> </td>
                                     </tr>
@@ -68,7 +68,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `category/${id}`,
+                        url: `{{config('app.url')}}/category/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

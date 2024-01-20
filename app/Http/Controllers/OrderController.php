@@ -2,6 +2,7 @@
 	
 	namespace App\Http\Controllers;
 	
+	use App\Models\Medicine;
 	use Domain\Modules\Medicine\Repositories\IMedicineRepository;
 	use Domain\Modules\Order\Entities\Order;
 	use Domain\Modules\Order\Repositories\IOrderRepository;
@@ -67,8 +68,12 @@
 			});
 			
 			$medicines = collect($this->medicineRepository->All())->mapWithKeys(function ($med) {
-				return [$med->id => $med->medicine_name];
+				$m = Medicine::find($med->id);
+				return [$m->id => $m->medicine_name . "" . $m->getType()];
 			});
+			
+			$medicines = [];
+			
 			
 			return view('order.create')->with([
 				'suppliers'    => $suppliers,

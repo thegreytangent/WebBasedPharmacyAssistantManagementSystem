@@ -5,7 +5,7 @@
         <!--breadcrumb-->
         <h6 class="mb-0 text-uppercase">&nbsp;</h6>
         {{--    <div class="d-flex order-actions">--}}
-        <a href="/order" class="btn btn-secondary"><i class="bx bxs-left-arrow-circle"></i>Back</a>
+        <a href="{{config('app.url')}}/order" class="btn btn-secondary"><i class="bx bxs-left-arrow-circle"></i>Back</a>
         {{--    </div>--}}
         <hr/>
 
@@ -82,7 +82,7 @@
             $("#supplier").click(function () {
                     let supplier_id = $(this).val()
                     $.ajax({
-                        url: `/supplier/medicines/${supplier_id}`,
+                        url: `{{config('app.url')}}/supplier/medicines/${supplier_id}`,
                         type: 'GET',
                         data: {
                             "_token": "{{ csrf_token() }}",
@@ -95,7 +95,7 @@
                                 $('#medicine').append(`<option value="">No Medicine</option>`);
                             } else {
                                 data.map( (d) => {
-                                    $('#medicine').append(`<option value="${d.id}">${d.medicine_name}</option>`);
+                                    $('#medicine').append(`<option value="${d.id}">${d.medicine_name} (${d.type}) - ${d.uom}</option>`);
                                 })
                             }
 

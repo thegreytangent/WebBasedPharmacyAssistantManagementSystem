@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">Purchase Information</h6>
                 <hr/>
-                <a href="/purchase-pharmacy" class="btn btn-success btn-sm ms-auto mb-3">
+                <a href="{{config('app.url')}}/purchase-pharmacy" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add New Purchase
                 </a>
 
@@ -37,7 +37,7 @@
                                     <td> {{$purchase->amount }}</td>
                                     <td>
                                         <div class="d-flex order-actions">
-                                            <a href="/purchase-medicine?purchase_id={{$purchase->id}}"
+                                            <a href="{{config('app.url')}}/purchase-medicine?purchase_id={{$purchase->id}}"
                                                class="btn btn-success"><i
                                                         class="bx bxs-show"></i></a>
                                             <a href="#" id="{{$purchase->id}}"
@@ -74,7 +74,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `purchase/${id}`,
+                        url: `{{config('app.url')}}/purchase/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
@@ -92,7 +92,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `purchase-delete`,
+                        url: `{{config('app.url')}}/purchase-delete`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

@@ -11,14 +11,19 @@
                 <div class="card">
                     <div class="card-body">
 
+                        <a href="{{config('app.url')}}/inventory-print" class="btn btn-warning" style="float: right">
+                           <i class="d-print-block"></i> Print
+                        </a>
+
                         @include('template.alert')
 
                         <table class="table mb-0 table-hover text-center">
                             <thead>
                             <tr>
                                 <th scope="col">Medicine</th>
-                                <th scope="col">Purchases (IN)</th>
-                                <th scope="col">Purchases (OUT)</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">UOM</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Balance</th>
                                 <th scope="col"></th>
 
@@ -30,10 +35,11 @@
                             @foreach($inventories as $inventory)
                                 <tr>
                                     <td>{{$inventory->medicine_name}}</td>
+                                    <td>{{$inventory->type}}</td>
+                                    <td>{{$inventory->uom}}</td>
                                     <td>{{$inventory->in}}</td>
-                                    <td>{{$inventory->out}}</td>
                                     <td>{{$inventory->balance}}</td>
-                                    <td><a href="/order?medicine_id={{$inventory->id}}" class="btn btn-sm btn-info">Show
+                                    <td><a href="{{config('app.url')}}/order?medicine_id={{$inventory->id}}" class="btn btn-sm btn-info">Show
                                             Expiration</a></td>
 
                                 </tr>
@@ -63,7 +69,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `medicine/${id}`,
+                        url: `{{config('app.url')}}/medicine/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",

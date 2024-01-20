@@ -13,6 +13,8 @@
         protected int $quantity;
         protected string $category_name;
         protected string $supplier_name;
+		protected string $type;
+		protected string $unit_of_measurement;
 
 
         public function __construct(string $name, Price $price,?string $id = null)
@@ -70,6 +72,28 @@
         {
             $this->supplier_name = $supplier_name;
         }
+	    
+	    public function getType(): string
+	    {
+		    return $this->type;
+	    }
+	    
+	    public function setType(string $type): void
+	    {
+		    $this->type = $type;
+	    }
+	    
+	    public function getUnitOfMeasurement(): string
+	    {
+		    return $this->unit_of_measurement;
+	    }
+	    
+	    public function setUnitOfMeasurement(string $unit_of_measurement): void
+	    {
+		    $this->unit_of_measurement = $unit_of_measurement;
+	    }
+		
+		
 
 
 

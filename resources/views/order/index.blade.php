@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <h6 class="mb-0 text-uppercase">Supplier Orders Information</h6>
                 <hr/>
-                <a href="/order/create" class="btn btn-success btn-sm ms-auto mb-3">
+                <a href="{{config('app.url')}}/order/create" class="btn btn-success btn-sm ms-auto mb-3">
                     <i class="bx bx-add-to-queue"> </i>Add Orders</a>
                 <div class="card">
                     <div class="card-body">
@@ -36,7 +36,7 @@
                                 <td>{{$order->expiration_date}}</td>
                                 <td> <span class="badge {{$order->label}}">{{$order->label_message}}</span> </td>
                                 <!-- <td>
-                                    <a href="/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
+                                    <a href="{{config('app.url')}}/medicine?supplier_id={{$order->supplier_id}}" class="btn btn-info btn-sm">
                                             <i class="bx bxs-book-open"></i> Show Medicine from Supplier
                                         </a>
                                 </td> -->
@@ -67,7 +67,7 @@
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
                     $.ajax({
-                        url: `medicine/${id}`,
+                        url: `{{config('app.url')}}/medicine/${id}`,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
