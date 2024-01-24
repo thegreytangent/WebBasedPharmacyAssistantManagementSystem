@@ -48,7 +48,6 @@
                             <div class="p-4">
                                 <div class="text-center mb-4">
                                     <h5 class="">Please log in to your account</h5>
-
                                 </div>
                                 @include('template.alert')
                                 <div class="form-body">
