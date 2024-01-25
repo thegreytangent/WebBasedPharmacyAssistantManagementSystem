@@ -28,11 +28,13 @@
 		
 		public function index(): View
 		{
+		
 			return view('login.index');
 		}
 		
 		public function login(Request $request)
 		{
+			
 			try {
 				$validate = Validator::make($request->all(), [
 					'username' => 'required',
@@ -69,8 +71,11 @@
 				}
 				
 				
+				
+				
 			} catch (Exception $exception) {
-				return redirectWithAlert('login', [
+				
+				return redirectWithAlert(config('app.url').'/login', [
 					'alert-danger' => $exception->getMessage()
 				]);
 			}

@@ -51,7 +51,7 @@
                                 </div>
                                 @include('template.alert')
                                 <div class="form-body">
-                                    <form class="row g-3" method="POST" action="/login">
+                                    <form class="row g-3" method="POST" action="{{config('app.url')}}/login">
                                         <div class="col-12">
                                             <label for="inputEmailAddress" class="form-label">Username:</label>
                                             <input type="text" name="username" class="form-control" />
