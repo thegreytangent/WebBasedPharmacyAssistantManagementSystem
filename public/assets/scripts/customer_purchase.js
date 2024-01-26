@@ -10,20 +10,29 @@ $(document).ready(function () {
             contentType: "application/json",
             dataType: 'JSON',
             success: function (res) {
+                $('.single-select').select2({
+                    theme: 'bootstrap4',
+                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                    placeholder: $(this).data('placeholder'),
+                    allowClear: Boolean($(this).data('allow-clear')),
+                });
+
                 dropDownSelect(res.data)
+
+
             }
         });
 
 
-    $('.select2').hide();
-
     function dropDownSelect(inventory_data) {
 
-        $('.form-select').change(function () {
-            let id = $(this).find('option:selected').val();
-            let name = $(this).find('option:selected').text();
-            let price = $(this).find('option:selected').attr("price");
+        $('.single-select').change(function () {
+            var id = $('.single-select').val();
+            var name = $('.single-select option:selected').text();
+            let price = $('.single-select option:selected').attr("price");
 
+
+            console.log(inventory_data);
 
            const inventory = inventory_data.find( i  => i.id == id);
            const balance = !inventory ? 0 : inventory.balance;
@@ -40,6 +49,8 @@ $(document).ready(function () {
             medicines.push(data)
             medicine_table = data;
         });
+
+
 
     }
 

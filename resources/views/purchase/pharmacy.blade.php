@@ -10,24 +10,22 @@
     <!--favicon-->
     <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png"/>
     <!--plugins-->
+    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css"  />
+    <link href="assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
     <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>
+{{--    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>--}}
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
     <!-- loader-->
     <link href="assets/css/pace.min.css" rel="stylesheet"/>
     <script src="assets/js/pace.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
     <link href="assets/css/app.css" rel="stylesheet">
     <link href="assets/css/icons.css" rel="stylesheet">
     <!-- Theme Style CSS -->
     <link rel="stylesheet" href="assets/css/dark-theme.css"/>
     <link rel="stylesheet" href="assets/css/semi-dark.css"/>
     <link rel="stylesheet" href="assets/css/header-colors.css"/>
-{{--    <link rel="stylesheet" href="{{asset('assets/npm/select2%404.1.0-rc.0/dist/css/select2.min.css')}}"/>--}}
-{{--    <link rel="stylesheet" href="{{asset('assets/npm/select2-bootstrap-5-theme%401.3.0/dist/select2-bootstrap-5-theme.min.css')}}"/>--}}
-
 
     <title>Pharmacist</title>
 </head>
@@ -146,10 +144,7 @@
                                                 <label for="inputCompareatprice" class="form-label">Receipt Number:</label>
                                                 <input type="text" id="receipt_number" value="{{$receipt_number}}" readonly name="receipt_number" placeholder="Receipt Number" class="form-control"  />
                                             </div>
-{{--                                            <div class="col-12">--}}
-{{--                                                <label for="inputCostPerPrice" class="form-label">Customer Name:</label>--}}
-{{--                                                {!! Form::select('customer', $customers,null, ['class' => 'form-control', 'placeholder' => '-- Select Customer --']); !!}--}}
-{{--                                            </div>--}}
+
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Total Amount:</label>
                                                 <input type="text" id="amount" name="amount" placeholder="Amount" readonly class="form-control"  />
@@ -192,26 +187,25 @@
 <!--end wrapper-->
 
 
+
 <!-- Bootstrap JS -->
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <!--plugins-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
 <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-
-
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<!--plugins-->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="{{asset('assets/npm/select2%404.1.0-rc.0/dist/js/select2.min.js')}}"></script>
+<script src="assets/js/app.js"></script>
+{{--<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>--}}
+<script src="assets/plugins/select2/js/select2.min.js"></script>
 <script src="assets/plugins/select2/js/select2-custom.js"></script>
 <script src="{{asset('assets/scripts/customer_purchase.js')}}"></script>
 
 
+
 </body>
 
+<script>
+
+</script>
 
 </html>

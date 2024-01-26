@@ -72,7 +72,7 @@
 			}
 			
 			
-			return '<select class="form-select" id="single-select-optgroup-field" data-placeholder="Select Medicine">
+			return '<select class="single-select form-select" id="single-select-optgroup-field" data-placeholder="Select Medicine">
                                 <option></option>
                                 ' . $result . '
                                     </select>';
