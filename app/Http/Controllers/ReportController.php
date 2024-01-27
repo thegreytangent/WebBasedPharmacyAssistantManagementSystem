@@ -16,7 +16,11 @@
 		
 		
 		public function purchase() {
-			$purchases_data = $this->purchaseRepository->GetAll();
+			
+			$purchases_data = $this->purchaseRepository->GetWithMonthYear(
+				request()->input('month'),
+				request()->input('year')
+			);
 			
 			$total = 0;
 			$result = [];

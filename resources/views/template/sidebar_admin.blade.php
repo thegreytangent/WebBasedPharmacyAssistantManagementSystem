@@ -61,12 +61,24 @@
     </a>
 
 </li>
-<li class="menu-label">Reports</li>
 <li>
-    <a href="{{config('app.url')}}/purchase-report">
+    <a style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#report_modal">
         <div class="parent-icon"><i class="bx bx-printer"></i>
         </div>
         <div class="menu-title">Reports</div>
     </a>
+</li>
+{{--<li class="menu-label">Reports</li>--}}
+<li>
+
+{{--    <a href="{{config('app.url')}}/purchase-report" data-bs-toggle="modal" data-bs-target="#report_modal">--}}
+{{--        <div class="parent-icon"><i class="bx bx-printer"></i>--}}
+{{--        </div>--}}
+{{--        <div class="menu-title">Reports</div>--}}
+{{--    </a>--}}
+
+
+
+
 
 </li>

@@ -76,8 +76,16 @@
         {
 	        return PurchaseDB::with(['PurchaseMedicine'])->get();
         }
-
-        public function GetAllMonthlySales(int $year): array
+		
+		public function GetWithMonthYear(string $month, string $year): Collection
+		{
+			return PurchaseDB::with(['PurchaseMedicine'])
+				->whereMonth('date',$month)
+				->whereYear('date',$year)
+				->get();
+		}
+	    
+	    public function GetAllMonthlySales(int $year): array
         {
 	        $sql = "SELECT p.id as id, MONTH(p.date) as month, p.total_amount as total ";
             $sql .= "FROM purchases p ";

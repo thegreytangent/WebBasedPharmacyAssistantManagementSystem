@@ -35,5 +35,7 @@
 		) : Paginator;
 		
 		public function deleteAll(): void;
+		
+		public function GetWithMonthYear(string $month, string $year) : Collection;
 	   
     }

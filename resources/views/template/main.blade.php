@@ -54,6 +54,44 @@
 
 
 
+<div class="modal fade" id="report_modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sales Report</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" action="{{config('app.url')}}/purchase-report">
+                    <div class="col-md-6">
+                        <label for="inputFirstName" class="form-label">Month</label>
+                        <select name="month" id="" class="form-control">
+                            @foreach(month_list() as $val => $month)
+                                <option value="{{$val}}">{{$month}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputLastName" class="form-label">Year</label>
+                        <select name="year" id="" class="form-control">
+                            @foreach(year_list() as $year)
+                                <option value="{{$year}}">{{$year}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Print</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
 <!-- Bootstrap JS -->
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 <!--plugins-->
@@ -71,7 +109,7 @@
 <script>
     new PerfectScrollbar(".app-container")
 </script>
-</body>
+
 
 
 <!-- Mirrored from codervent.com/rocker/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Jul 2023 05:37:46 GMT -->
