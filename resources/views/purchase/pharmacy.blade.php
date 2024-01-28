@@ -10,10 +10,10 @@
     <!--favicon-->
     <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png"/>
     <!--plugins-->
-    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css"  />
-    <link href="assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css"/>
+    <link href="assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet"/>
     <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
-{{--    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>--}}
+    {{--    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>--}}
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
     <!-- loader-->
     <link href="assets/css/pace.min.css" rel="stylesheet"/>
@@ -45,7 +45,7 @@
 
                 <div class="top-menu ms-auto">
                     <ul class="navbar-nav align-items-center gap-1" style="margin-right:479px">
-                        <img width="100%" src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon" />
+                        <img width="100%" src="{{asset('assets/images/logo-img.png')}}" alt="logo-icon"/>
                     </ul>
                 </div>
 
@@ -61,13 +61,13 @@
                     <ul class="dropdown-menu dropdown-menu-end">
 
                         <li><a class="dropdown-item d-flex align-items-center" href="javascript:"><i
-                                    class="bx bx-download fs-5"></i><span>Settings</span></a>
+                                        class="bx bx-download fs-5"></i><span>Settings</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>
                         <li><a class="dropdown-item d-flex align-items-center" href="javascript:"><i
-                                    class="bx bx-log-out-circle"></i><span>Logout</span></a>
+                                        class="bx bx-log-out-circle"></i><span>Logout</span></a>
                         </li>
                     </ul>
                 </div>
@@ -91,7 +91,7 @@
 
                                 <div class="row text-right">
 
-                                    <div class="col col-6"> <label for="">Medicines:</label> {!!  $medicines !!}</div>
+                                    <div class="col col-6"><label for="">Medicines:</label> {!!  $medicines !!}</div>
                                     <div class="col">
                                         <label for="">Balance:</label>
                                         <input readonly type="number" class="form-control" id="balance">
@@ -128,7 +128,6 @@
                                 </div>
 
 
-
                             </div>
                             <div class="col-lg-4">
                                 <form action="" id="purchase_form">
@@ -137,30 +136,37 @@
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label for="inputPrice" class="form-label">Date:</label>
-                                                <input type="date" id="date" name="date" placeholder="Date" class="form-control"  />
+                                                <input type="date" id="date" name="date" placeholder="Date"
+                                                       class="form-control"/>
 
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="inputCompareatprice" class="form-label">Receipt Number:</label>
-                                                <input type="text" id="receipt_number" value="{{$receipt_number}}" readonly name="receipt_number" placeholder="Receipt Number" class="form-control"  />
+                                                <label for="inputCompareatprice" class="form-label">Receipt
+                                                    Number:</label>
+                                                <input type="text" id="receipt_number" value="{{$receipt_number}}"
+                                                       readonly name="receipt_number" placeholder="Receipt Number"
+                                                       class="form-control"/>
                                             </div>
 
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Total Amount:</label>
-                                                <input type="text" id="amount" name="amount" placeholder="Amount" readonly class="form-control"  />
+                                                <input type="text" id="amount" name="amount" placeholder="Amount"
+                                                       readonly class="form-control"/>
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Cash:</label>
-                                                <input type="number" id="cash" name="cash" placeholder="Cash" class="form-control"  />
+                                                <input type="number" id="cash" name="cash" placeholder="Cash"
+                                                       class="form-control"/>
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputVendor" class="form-label">Change:</label>
-                                                <input readonly type="text" id="change" name="change" placeholder="Change" class="form-control"  />
+                                                <input readonly type="text" id="change" name="change"
+                                                       placeholder="Change" class="form-control"/>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button  type="submit" class="btn btn-primary">Save</button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,7 +193,6 @@
 <!--end wrapper-->
 
 
-
 <!-- Bootstrap JS -->
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <!--plugins-->
@@ -198,8 +203,7 @@
 {{--<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>--}}
 <script src="assets/plugins/select2/js/select2.min.js"></script>
 <script src="assets/plugins/select2/js/select2-custom.js"></script>
-<script src="{{asset('assets/scripts/customer_purchase.js')}}"></script>
-
+<script src="{{asset('assets/scripts/customer_purchase.js?version='.time())}}"></script>
 
 
 </body>

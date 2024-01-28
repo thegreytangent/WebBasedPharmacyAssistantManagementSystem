@@ -127,21 +127,21 @@
 		
 		public function getInventories()
 		{
-			 $result = $this->medicineRepository->getAllOrderWithQtyGroupByMedicine();
+			$result = $this->medicineRepository->getAllOrderWithQtyGroupByMedicine();
 			
 			$inventories = collect($result)->map(function ($m) {
-				 $purchase = $this->medicineRepository->findByMedicineTotalPurchases($m->medicine_id);
+				$purchase = $this->medicineRepository->findByMedicineTotalPurchases($m->medicine_id);
 				
-
-					$purchase_qty =  $purchase ? $purchase->qty : 0;
-					$bal = $m->qty - $purchase_qty;
-
-
+				
+				$purchase_qty = $purchase ? $purchase->qty : 0;
+				$bal = $m->qty - $purchase_qty;
+				
+				
 				return [
-					'id'      => $m->medicine_id,
+					'id'        => $m->medicine_id,
 					'order_qty' => $m->qty,
-					'pur_qty' => $purchase_qty,
-					'balance' => (int)$bal ?? 0
+					'pur_qty'   => $purchase_qty,
+					'balance'   => (int)$bal ?? 0
 				];
 			});
 			

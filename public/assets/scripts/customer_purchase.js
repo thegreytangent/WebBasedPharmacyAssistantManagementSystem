@@ -2,40 +2,42 @@ $(document).ready(function () {
     let medicines = [];
     let medicine_table = null;
     let purchases = {};
+    let inventories = [];
+    let inventory = {};
 
 
-        $.ajax({
-            url: `/pharmacy_assistant/api/purchase-pharmacy/inventories`,
-            type: 'GET',
-            contentType: "application/json",
-            dataType: 'JSON',
-            success: function (res) {
-                $('.single-select').select2({
-                    theme: 'bootstrap4',
-                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-                    placeholder: $(this).data('placeholder'),
-                    allowClear: Boolean($(this).data('allow-clear')),
-                });
+    $.ajax({
+        url: `/pharmacy_assistant/api/purchase-pharmacy/inventories`,
+        type: 'GET',
+        contentType: "application/json",
+        dataType: 'JSON',
+        success: function (res) {
+            $('.single-select').select2({
+                theme: 'bootstrap4',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: Boolean($(this).data('allow-clear')),
+            });
 
-                dropDownSelect(res.data)
-
-
-            }
-        });
+            inventories = res.data;
 
 
-    function dropDownSelect(inventory_data) {
+            dropDownSelect()
+
+
+        }
+    });
+
+
+    function dropDownSelect() {
 
         $('.single-select').change(function () {
             var id = $('.single-select').val();
             var name = $('.single-select option:selected').text();
             let price = $('.single-select option:selected').attr("price");
 
-
-            console.log(inventory_data);
-
-           const inventory = inventory_data.find( i  => i.id == id);
-           const balance = !inventory ? 0 : inventory.balance;
+            inventory = inventories.find(i => i.id == id);
+            const balance = !inventory ? 0 : inventory.balance;
 
             $("#balance").val(balance);
 
@@ -49,7 +51,6 @@ $(document).ready(function () {
             medicines.push(data)
             medicine_table = data;
         });
-
 
 
     }
@@ -102,7 +103,16 @@ $(document).ready(function () {
 
 
     $("#add_to_table").click(function () {
-        let qty = $("#qty").val();
+
+        let qty = parseFloat($("#qty").val());
+        let balance = parseFloat($("#balance").val());
+
+        if (balance < qty) {
+            alert("You have no medicine left!");
+            return;
+        }
+
+
         if (!medicine_table || !medicine_table.medicine_name || !qty) {
             alert("Some fields are required!")
             return
@@ -110,16 +120,32 @@ $(document).ready(function () {
 
         medicines[medicines.length - 1].qty = qty
 
+        // inventories
+
+        let i = inventories.findIndex(i => i.id == inventory.id);
+
+        inventories[i].balance -= qty;
+
+
         table_medicines_template(medicine_table, qty);
 
         $("#amount").val(computeTotal(medicines, qty).toFixed(2));
+
+        clear_forms();
+
     });
+
+    function clear_forms() {
+        $("#qty").val(null);
+        $("#balance").val(null);
+        $('.single-select').val(null).trigger('change');
+    }
 
 
     function computeTotal(obj, qty) {
 
         let total = 0;
-        for(let x = 0; x < medicines.length; x++ ) {
+        for (let x = 0; x < medicines.length; x++) {
             let price = Number(medicines[x].price);
             let _qty = Number(medicines[x].qty);
             total += price * _qty;
@@ -130,7 +156,7 @@ $(document).ready(function () {
 
 
     function table_medicines_template(medicine_table, qty) {
-        console.log(medicine_table);
+
         const price = Math.round((medicine_table.price) * 1e12) / 1e12;
         $('#table-medicine').append(` <tr id="row-${medicine_table.medicine_id}">
             <th scope="row">${medicine_table.medicine_name}</th>
