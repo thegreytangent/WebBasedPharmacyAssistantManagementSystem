@@ -77,7 +77,7 @@ $(document).ready(function () {
             return;
         }
 
-        purchases['medicines'] = medicines;
+        purchases['medicines'] = medicines.filter(item => item.medicine_id !== "");
 
         if (confirm("The record will be save. Are you sure to submit?")) {
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
         medicines[medicines.length - 1].qty = qty
 
-        // inventories
+
 
         let i = inventories.findIndex(i => i.id == inventory.id);
 
@@ -146,9 +146,15 @@ $(document).ready(function () {
 
         let total = 0;
         for (let x = 0; x < medicines.length; x++) {
-            let price = Number(medicines[x].price);
-            let _qty = Number(medicines[x].qty);
-            total += price * _qty;
+
+
+            if (medicines[x].price) {
+
+                let price = Number(medicines[x].price);
+                let _qty = Number(medicines[x].qty);
+                total += price * _qty;
+            }
+
         }
 
         return total;
